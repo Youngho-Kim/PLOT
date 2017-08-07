@@ -2,6 +2,8 @@ package com.android.fastcampus.kwave.plot.DataSource;
 
 import android.content.Context;
 
+import com.android.fastcampus.kwave.plot.R;
+
 /**
  * Created by kwave on 2017-08-01.
  */
@@ -29,15 +31,15 @@ public class Data {
      * 메인 페이지의 랭킹 Best 이미지 자료
      */
     public Integer[] rankBestImage = {
-//            R.drawable.irene,
-//            R.drawable.dahyun,
-//            R.drawable.yein1,
-//            R.drawable.jisu,
-//            R.drawable.chorong,
-//            R.drawable.irene1,
-//            R.drawable.bomi,
-//            R.drawable.yein,
-//            R.drawable.sana,
-//            R.drawable.taeyeon,
+            R.drawable.irene,
+            R.drawable.dahyun,
+            R.drawable.yein1,
+            R.drawable.jisu,
+            R.drawable.chorong,
+            R.drawable.irene1,
+            R.drawable.bomi,
+            R.drawable.yein,
+            R.drawable.sana,
+            R.drawable.taeyeon,
     };
 }
