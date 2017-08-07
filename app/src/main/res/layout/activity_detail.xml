@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.fastcampus.kwave.plot.DetailActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
+        <ImageView
+            android:id="@+id/postImg"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="전시 제목"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <RatingBar
+            android:id="@+id/ratingBar2"
+            style="@android:style/Widget.DeviceDefault.Light.RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:rating="0" />
+
+        <TextView
+            android:id="@+id/textPeriod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textAddr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnBooking"
+                android:layout_width="35dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="예매하기" />
+
+            <Button
+                android:id="@+id/btnLocation"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="위치보기" />
+
+            <Button
+                android:id="@+id/btnReview"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="댓글쓰기" />
+
+            <Button
+                android:id="@+id/btnWant"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="보고싶어요" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.design.widget.TabLayout>
+
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="350dp">
+
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+
+</ScrollView>
+
+

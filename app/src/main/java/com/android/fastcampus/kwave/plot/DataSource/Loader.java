@@ -18,6 +18,7 @@ public class Loader {
             data.exhibition = "fastcampus";
             data.date_start = "2017. 07. " + (10+i);
             data.star = (float) (4.5 -(i/10));
+
 //            data.setImage("irene", context);
             result.add(data);
         }
