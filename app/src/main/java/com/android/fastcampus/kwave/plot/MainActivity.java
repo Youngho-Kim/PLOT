@@ -34,7 +34,9 @@ import android.widget.Toast;
 
 import com.android.fastcampus.kwave.plot.DataSource.Data;
 import com.android.fastcampus.kwave.plot.DataSource.Loader;
+import com.android.fastcampus.kwave.plot.adapter.RankViewPagerAdapterMain;
 import com.android.fastcampus.kwave.plot.navigation.NaviDrawerSetting;
+import com.android.fastcampus.kwave.plot.navigation.NavigationManager;
 
 import java.util.ArrayList;
 import java.util.Calendar;
