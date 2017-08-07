@@ -15,7 +15,7 @@ public class Data {
     public String subTitle;     // 전시회 부제
     public String exhibition;   // 전시회 장소
     public String grade;        // 전시회 관람등급
-    public double star;           // 별점
+    public float star;           // 별점
     public int no;
     public String image;        // 전시회 포스터
     public int resId;           // 각 전시회별 pk
