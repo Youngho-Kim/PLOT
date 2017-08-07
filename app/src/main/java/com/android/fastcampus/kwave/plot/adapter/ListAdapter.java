@@ -63,7 +63,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
             location = (TextView) v.findViewById(R.id.location);
             period = (TextView) v.findViewById(R.id.period);
             poster = (ImageView) v.findViewById(R.id.poster);
-            ratingBar = (RatingBar) v.findViewById(ratingBar);
+            ratingBar = (RatingBar) v.findViewById(R.id.ratingBar);
         }
         public void setPosition(int position){
             this.position = position;

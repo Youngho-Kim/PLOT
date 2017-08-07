@@ -1,12 +1,14 @@
 package com.android.fastcampus.kwave.plot.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.fastcampus.kwave.plot.CommentActivity;
 import com.android.fastcampus.kwave.plot.DataSource.Data;
 import com.android.fastcampus.kwave.plot.DataSource.Loader;
 import com.android.fastcampus.kwave.plot.R;
@@ -61,6 +63,14 @@ public class WantAdapter extends RecyclerView.Adapter<WantAdapter.Holder> {
             textDateStart_main = (TextView) itemView.findViewById(R.id.textDateStart_main);
             textDateEnd_main = (TextView) itemView.findViewById(R.id.textDateEnd_main);
             textExhibition_main = (TextView) itemView.findViewById(R.id.textExhibition_main);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), CommentActivity.class);
+                    intent.putExtra("LIST_POSITION", position);
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }
