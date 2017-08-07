@@ -17,7 +17,7 @@ public class Loader {
             data.date_end = "2017. 08. 0"+i;
             data.exhibition = "fastcamus";
             data.date_start = "2017. 07. " + (10+i);
-            data.star = (4.5 -(i/10));
+            data.star = (float)(4.5 -(i/10));
 //            data.setImage("irene", context);
             result.add(data);
         }

@@ -11,10 +11,12 @@ import com.android.fastcampus.kwave.plot.adapter.ListAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity implements IData {
     RecyclerView recycler;
     ListAdapter adapter;
     List<Data> datas = new ArrayList<>();
+    ThrowData2Activity throwData2Activity;
+    String url = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,16 @@ public class ListActivity extends AppCompatActivity {
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(this));
 
+        throwData2Activity.Task(this);
     }
 
+    @Override
+    public void postExecute(String jsonString) {
+
+    }
+
+    @Override
+    public String getUrl() {
+        return url;
+    }
 }
