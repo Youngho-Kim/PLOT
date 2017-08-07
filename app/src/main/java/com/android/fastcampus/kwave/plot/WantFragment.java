@@ -3,9 +3,17 @@ package com.android.fastcampus.kwave.plot;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.fastcampus.kwave.plot.DataSource.Data;
+import com.android.fastcampus.kwave.plot.DataSource.Loader;
+import com.android.fastcampus.kwave.plot.adapter.WantAdapter;
+
+import java.util.List;
 
 
 /**
@@ -13,6 +21,9 @@ import android.view.ViewGroup;
  */
 public class WantFragment extends Fragment {
 
+    RecyclerView recyclerView;
+    WantAdapter wantAdapter;
+    List<Data> dataList;
 
     public WantFragment() {
         // Required empty public constructor
@@ -23,7 +34,14 @@ public class WantFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_want, container, false);
+        View view = inflater.inflate(R.layout.fragment_want, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        dataList = Loader.getData(getContext());
+        wantAdapter = new WantAdapter(dataList, getContext());
+        recyclerView.setAdapter(wantAdapter);
+
+        return view;
     }
 
 }
