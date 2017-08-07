@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.android.fastcampus.kwave.plot.CommentActivity;
 import com.android.fastcampus.kwave.plot.DataSource.Data;
 import com.android.fastcampus.kwave.plot.R;
 
@@ -71,7 +72,7 @@ public class RankRecyclerAdapterMain extends RecyclerView.Adapter<RankRecyclerAd
             v.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                    Intent intent = new Intent(v.getContext(), CommentActivity.class);
                     intent.putExtra("LIST_POSITION", position);
                     v.getContext().startActivity(intent);
                  }
