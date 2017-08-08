@@ -28,9 +28,9 @@ public class ExReviewAdapter extends RecyclerView.Adapter<ExReviewAdapter.Holder
     @Override
     public void onBindViewHolder(Holder holder, int position) {
 
-        holder.textUserId.setText();
-        holder.textContent.setText();
-        holder.textDate.setText();
+//        holder.textUserId.setText();
+//        holder.textContent.setText();
+//        holder.textDate.setText();
     }
 
     @Override
