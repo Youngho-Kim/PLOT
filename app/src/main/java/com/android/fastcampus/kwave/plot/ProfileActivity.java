@@ -29,6 +29,11 @@ public class ProfileActivity extends AppCompatActivity {
         initTabLayout();
     }
 
+    /*
+        프로필 이미지를 띄우고, 바꾸는 함수.
+        프로필 이미지 변경은 현재 갤러리를 열어서 사진을 선택하는 정도까지만 구현함.
+     */
+
     private void initProfileImage(){
         userProfileImage = (ImageView) findViewById(R.id.userProfileImage);
         userProfileImage.setOnClickListener(new View.OnClickListener() {
@@ -42,11 +47,19 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    /*
+    뷰페이저 구현
+     */
+
     private void initViewPager(){
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
     }
+
+    /*
+    탭 레이아웃 구현
+     */
 
     private void initTabLayout(){
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);

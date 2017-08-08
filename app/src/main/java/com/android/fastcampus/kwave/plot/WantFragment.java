@@ -37,6 +37,7 @@ public class WantFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_want, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //Data는 데이터가 들어올 형식만 정해져 있어 Loader.getData를 이용.
         dataList = Loader.getData(getContext());
         wantAdapter = new WantAdapter(dataList, getContext());
         recyclerView.setAdapter(wantAdapter);

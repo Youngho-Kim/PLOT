@@ -7,13 +7,16 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class CommentActivity extends AppCompatActivity {
 
@@ -41,34 +44,20 @@ public class CommentActivity extends AppCompatActivity {
                 intent.putExtra("Comment", comment);
                 intent.putExtra("Rate", rate);
                 setDate();
-                setNoti();
                 Toast.makeText(getBaseContext(), "관람평 = " + comment + "평점 = " + rate + "설정한 날짜 = " + date, Toast.LENGTH_SHORT).show();
+
             }
         });
 
     }
 
-    public void setDate(){
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2017);
-        calendar.set(Calendar.MONTH, 8);
-        calendar.set(Calendar.DATE, 28);
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 0);
-        date = (calendar.get(Calendar.MONTH)) + "월" + (calendar.get(Calendar.DATE)) + "일";
+
+    public String setDate(){
+        Date nowDate = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        date = sdf.format(nowDate);
+        return date;
     }
 
-    public void setNoti(){
-        int requestCode = 365;
-        if(requestCode == 365) {
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            Notification notification = new NotificationCompat.Builder(getApplicationContext())
-                    .setContentTitle("예매 완료")
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentText(date + "에 보실 전시를 예매하였습니다.")
-                    .build();
 
-            notificationManager.notify(requestCode, notification);
-        }
-    }
 }
