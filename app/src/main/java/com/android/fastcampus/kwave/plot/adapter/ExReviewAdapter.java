@@ -6,7 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.fastcampus.kwave.plot.DataSource.Data;
 import com.android.fastcampus.kwave.plot.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by maxx on 2017. 8. 8..
@@ -14,7 +18,7 @@ import com.android.fastcampus.kwave.plot.R;
 
 public class ExReviewAdapter extends RecyclerView.Adapter<ExReviewAdapter.Holder> {
 
-
+    List<Data> list = new ArrayList<>();
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.review_item, parent, false);
@@ -31,7 +35,7 @@ public class ExReviewAdapter extends RecyclerView.Adapter<ExReviewAdapter.Holder
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     class Holder extends RecyclerView.ViewHolder {
