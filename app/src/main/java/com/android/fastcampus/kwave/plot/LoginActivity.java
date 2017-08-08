@@ -125,6 +125,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /**
      * Callback received when a permissions request has been completed.
+     * 퍼미션 요청이 끝나면 콜백이 받아집니다.
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
@@ -179,12 +180,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
+            // There was an error; don't attempt login and focus the first form field with an error.
+            // 오류가 있었습니다. 로그인을 시도하지 마십시요 그리고 에러가 있는 필드에 첫번째 폼에 촛점을 맞추세요.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
+            // Show a progress spinner, and kick off a background task to perform the user login attempt.
+            // 프로그레스 스피너를 표시하면, 사용자 로그인 시도를 수행하기위한 백그라운드 작업을 시작할 수 있습니다.
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
@@ -207,6 +208,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /**
      * Shows the progress UI and hides the login form.
+     * 프로그레스 UI를 보여주며 로그인 폼을 숨겨줍니다.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
@@ -234,8 +236,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
             });
         } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
+            // The ViewPropertyAnimator APIs are not available, so simply show and hide the relevant UI components.
+            // ViewPropertyAnimator API를 사용할 수 없으므로 관련 UI 구성 요소를 표시하거나 숨깁니다.
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
