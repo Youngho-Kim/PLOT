@@ -292,9 +292,10 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
+            // naviDrawer에서 login 페이지로 넘어가기
             case R.id.btnNaviUserLogin:
-                btnNaviUserLogin.setVisibility(View.GONE);
-                naviUser.setVisibility(View.VISIBLE);
+                intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
                 break;
             case R.id.naviUser:
                 naviUser.setVisibility(View.GONE);
