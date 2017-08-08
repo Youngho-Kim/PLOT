@@ -1,12 +1,15 @@
 package com.android.fastcampus.kwave.plot;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView postImg;
     TextView textTitle, textPeriod, textAddr;
@@ -39,6 +42,7 @@ public class DetailActivity extends AppCompatActivity {
         setTab2Pager();
         setPageAdapter();
 
+
     }
     /*
     위젯 세팅
@@ -52,8 +56,11 @@ public class DetailActivity extends AppCompatActivity {
         postImg = (ImageView) findViewById(R.id.postImg);
 
         btnBooking = (Button) findViewById(R.id.btnBooking);
+        btnBooking.setOnClickListener(this);
+
         btnLocation = (Button) findViewById(R.id.btnLocation);
         btnReview = (Button) findViewById(R.id.btnReview);
+        btnReview.setOnClickListener(this);
         btnWant = (Button) findViewById(R.id.btnWant);
 
     }
@@ -81,6 +88,22 @@ public class DetailActivity extends AppCompatActivity {
         pager.setAdapter(adapter);
 
     }
+
+    /*
+    포스터 아래 만들어놓은 버튼별 기능 구현(현재 예약하기, 댓글쓰기만 구현함)
+    */
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.btnBooking:
+                goReserve();
+                break;
+            case R.id.btnReview:
+                goComment();
+                break;
+        }
+    }
+
     /*
     뷰페이저 아답터
      */
@@ -127,4 +150,21 @@ public class DetailActivity extends AppCompatActivity {
         tab.addTab(tab.newTab().setText("전시장 위치"));
     }
 
+    /*
+    예매하기 버튼을 누르면 예매하는 액티비티로 이동하는 함수
+     */
+    private void goReserve(){
+        Intent intent = new Intent(DetailActivity.this, ReserveActivity.class);
+        intent.putExtra("Title", textTitle.getText().toString());
+        startActivity(intent);
+    }
+
+    /*
+     댓글쓰기 버튼을 누르면 관람평을 남기는 액티비티로 이동하는 함수
+     */
+    private void goComment(){
+        Intent intent = new Intent(DetailActivity.this, CommentActivity.class);
+        intent.putExtra("Title", textTitle.getText().toString());
+        startActivity(intent);
+    }
 }

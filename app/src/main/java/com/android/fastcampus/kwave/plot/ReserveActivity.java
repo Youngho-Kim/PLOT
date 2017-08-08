@@ -1,5 +1,7 @@
 package com.android.fastcampus.kwave.plot;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,9 +19,9 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
 
     Spinner spinnerNormal, spinnerStudent, spinnerPackage, spinnerWeekday, spinnerWeekend;
     ArrayAdapter adapter;
-    TextView txtPriceResult;
+    TextView txtPriceResult, txtTitle;
     Button btnGoBuy;
-    ImageView btnReset;
+
 
     static int normalPrice, studentPrice, packagePrice, weekdayPrice, weekendPrice, resultPrice;
 
@@ -28,7 +30,7 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserve);
 
-        adapter = new ArrayAdapter(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, number);
+        adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, number);
 
         initView();
         setSpinnerAdapter(spinnerNormal);
@@ -47,9 +49,12 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
        spinnerWeekend = (Spinner) findViewById(R.id.spinnerWeekend);
 
        txtPriceResult = (TextView) findViewById(R.id.txtPriceResult);
+       txtTitle = (TextView) findViewById(R.id.txtTitle);
+
 
        btnGoBuy = (Button) findViewById(R.id.btnGoBuy);
        btnGoBuy.setOnClickListener(this);
+       setTitle();
    }
 
    public void setSpinnerAdapter(Spinner spinner){
@@ -91,5 +96,11 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+
+    public void setTitle(){
+        Intent intent = getIntent();
+        txtTitle.setText(intent.getStringExtra("Title"));
     }
 }

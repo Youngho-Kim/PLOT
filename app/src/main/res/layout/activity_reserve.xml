@@ -33,8 +33,9 @@
         android:textSize="24sp"
         android:layout_marginLeft="24dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/textNotice" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+        android:layout_marginStart="24dp" />
 
     <TextView
         android:id="@+id/txtStudent"
@@ -46,7 +47,8 @@
         android:layout_marginLeft="24dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/txtNormal" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNormal"
+        android:layout_marginStart="24dp" />
 
     <TextView
         android:id="@+id/txtPackage"
@@ -58,7 +60,8 @@
         android:layout_marginLeft="24dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/txtStudent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtStudent"
+        android:layout_marginStart="24dp" />
 
     <TextView
         android:id="@+id/txtWeekday"
@@ -70,7 +73,8 @@
         android:layout_marginLeft="24dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/txtPackage" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPackage"
+        android:layout_marginStart="24dp" />
 
     <TextView
         android:id="@+id/textWeekend"
@@ -82,7 +86,8 @@
         android:textColor="#37374f"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWeekday" />
+        app:layout_constraintTop_toBottomOf="@+id/txtWeekday"
+        android:layout_marginStart="24dp" />
 
     <TextView
         android:id="@+id/txtNormalPrice"
@@ -94,7 +99,7 @@
         android:layout_marginRight="120dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtNormal"
-        android:layout_marginTop="0dp" />
+        android:layout_marginEnd="120dp" />
 
     <TextView
         android:id="@+id/txtPriceStudent"
@@ -106,7 +111,7 @@
         android:textSize="24sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtStudent"
-        android:layout_marginTop="0dp" />
+        android:layout_marginEnd="120dp" />
 
     <TextView
         android:id="@+id/txtPricePackage"
@@ -118,96 +123,83 @@
         android:textSize="24sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtPackage"
-        android:layout_marginTop="0dp" />
+        android:layout_marginEnd="120dp" />
 
     <TextView
         android:id="@+id/txtPriceWeekday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="120dp"
-        android:layout_marginTop="0dp"
         android:text="15,000원"
         android:textColor="#37374f"
         android:textSize="24sp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtWeekday" />
+        app:layout_constraintTop_toTopOf="@+id/txtWeekday"
+        android:layout_marginEnd="120dp" />
 
     <TextView
         android:id="@+id/txtPriceWeekend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="120dp"
-        android:layout_marginTop="0dp"
         android:text="17,000원"
         android:textColor="#37374f"
         android:textSize="24sp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textWeekend" />
-
-    <Spinner
-        android:id="@+id/spinnerNormal"
-        android:layout_width="60dp"
-        android:layout_height="28dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginTop="0dp"
-        android:elevation="3dp"
-        android:popupBackground="#838A8D"
-        android:textAlignment="textEnd"
-        android:visibility="visible"
-        app:layout_constraintRight_toLeftOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/txtNormalPrice" />
+        app:layout_constraintTop_toTopOf="@+id/textWeekend"
+        android:layout_marginEnd="120dp" />
 
     <Spinner
         android:id="@+id/spinnerStudent"
         android:layout_width="60dp"
         android:layout_height="28dp"
         android:layout_marginRight="2dp"
-        android:layout_marginTop="0dp"
         android:elevation="3dp"
         android:popupBackground="#838A8D"
         android:textAlignment="textEnd"
         android:visibility="visible"
         app:layout_constraintRight_toLeftOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="@+id/txtPriceStudent" />
+        app:layout_constraintTop_toTopOf="@+id/txtPriceStudent"
+        android:layout_marginEnd="2dp" />
 
     <Spinner
         android:id="@+id/spinnerPackage"
         android:layout_width="60dp"
         android:layout_height="28dp"
         android:layout_marginRight="2dp"
-        android:layout_marginTop="0dp"
         android:elevation="3dp"
         android:popupBackground="#838A8D"
         android:textAlignment="textEnd"
         android:visibility="visible"
         app:layout_constraintRight_toLeftOf="@+id/textView14"
-        app:layout_constraintTop_toTopOf="@+id/txtPricePackage" />
+        app:layout_constraintTop_toTopOf="@+id/txtPricePackage"
+        android:layout_marginEnd="2dp" />
 
     <Spinner
         android:id="@+id/spinnerWeekday"
         android:layout_width="60dp"
         android:layout_height="28dp"
         android:layout_marginRight="2dp"
-        android:layout_marginTop="0dp"
         android:elevation="3dp"
         android:popupBackground="#838A8D"
         android:textAlignment="textEnd"
         android:visibility="visible"
         app:layout_constraintRight_toLeftOf="@+id/textView19"
-        app:layout_constraintTop_toTopOf="@+id/txtPriceWeekday" />
+        app:layout_constraintTop_toTopOf="@+id/txtPriceWeekday"
+        android:layout_marginEnd="2dp" />
 
     <Spinner
         android:id="@+id/spinnerWeekend"
         android:layout_width="60dp"
         android:layout_height="28dp"
-        android:layout_marginTop="0dp"
         android:elevation="3dp"
         android:popupBackground="#838A8D"
         android:textAlignment="textEnd"
         android:visibility="visible"
         app:layout_constraintTop_toTopOf="@+id/txtPriceWeekend"
         app:layout_constraintRight_toLeftOf="@+id/textView21"
-        android:layout_marginRight="2dp" />
+        android:layout_marginRight="2dp"
+        android:layout_marginEnd="2dp" />
 
     <TextView
         android:id="@+id/textView7"
@@ -216,10 +208,11 @@
         android:text="매"
         android:textColor="#37374f"
         android:textSize="24sp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="25dp"
         app:layout_constraintTop_toTopOf="@+id/spinnerNormal"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="25dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:layout_marginTop="0dp" />
 
     <TextView
         android:id="@+id/textView10"
@@ -231,7 +224,7 @@
         android:layout_marginRight="24dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spinnerStudent"
-        android:layout_marginTop="0dp" />
+        android:layout_marginEnd="24dp" />
 
     <TextView
         android:id="@+id/textView14"
@@ -241,9 +234,9 @@
         android:textColor="#37374f"
         android:textSize="24sp"
         app:layout_constraintTop_toTopOf="@+id/spinnerPackage"
-        android:layout_marginTop="0dp"
         android:layout_marginRight="24dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="24dp" />
 
     <TextView
         android:id="@+id/textView19"
@@ -255,7 +248,7 @@
         android:textSize="24sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spinnerWeekday"
-        android:layout_marginTop="0dp" />
+        android:layout_marginEnd="25dp" />
 
     <TextView
         android:id="@+id/textView21"
@@ -267,7 +260,7 @@
         android:textSize="24sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spinnerWeekend"
-        android:layout_marginTop="0dp" />
+        android:layout_marginEnd="25dp" />
 
     <TextView
         android:id="@+id/txtResult"
@@ -279,7 +272,8 @@
         android:layout_marginLeft="24dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/textWeekend" />
+        app:layout_constraintTop_toBottomOf="@+id/textWeekend"
+        android:layout_marginStart="24dp" />
 
     <TextView
         android:id="@+id/textView24"
@@ -291,19 +285,19 @@
         android:layout_marginRight="24dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtPriceResult"
-        android:layout_marginTop="0dp" />
+        android:layout_marginEnd="24dp" />
 
     <TextView
         android:id="@+id/txtPriceResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="0dp"
         android:text="0"
         android:textColor="#37343f"
         android:textSize="30sp"
         app:layout_constraintRight_toLeftOf="@+id/textView24"
-        app:layout_constraintTop_toTopOf="@+id/txtResult" />
+        app:layout_constraintTop_toTopOf="@+id/txtResult"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/btnGoBuy"
@@ -320,6 +314,34 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtResult" />
+        app:layout_constraintTop_toBottomOf="@+id/txtResult"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="리스트에서 받아온 전시제목"
+        android:textSize="24sp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textNotice"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerNormal"
+        android:layout_width="60dp"
+        android:layout_height="28dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="0dp"
+        android:background="#000000"
+        android:scrollbars="none"
+        app:layout_constraintRight_toLeftOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="@+id/txtNormalPrice" />
 
 </android.support.constraint.ConstraintLayout>
