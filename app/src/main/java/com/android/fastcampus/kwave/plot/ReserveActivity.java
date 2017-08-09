@@ -36,7 +36,7 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserve);
 
-        adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, number);
+        adapter = new ArrayAdapter(getApplicationContext(), R.layout.layout_spinner_item, number);
 
         initView();
         setSpinnerAdapter(spinnerNormal);
