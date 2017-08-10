@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.android.fastcampus.kwave.plot.DataSource.Data;
 import com.android.fastcampus.kwave.plot.DataSource.Loader;
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.adapter.WantAdapter;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class WantFragment extends Fragment {
 
     RecyclerView recyclerView;
     WantAdapter wantAdapter;
-    List<Data> dataList;
+    List<Records> dataList;
 
     public WantFragment() {
         // Required empty public constructor

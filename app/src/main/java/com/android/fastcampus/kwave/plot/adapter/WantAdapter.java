@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.android.fastcampus.kwave.plot.CommentActivity;
 import com.android.fastcampus.kwave.plot.DataSource.Data;
 import com.android.fastcampus.kwave.plot.DataSource.Loader;
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.R;
 
 import java.util.ArrayList;
@@ -23,9 +24,9 @@ import java.util.List;
 public class WantAdapter extends RecyclerView.Adapter<WantAdapter.Holder> {
 
     Context context;
-    List<Data> dataList = new ArrayList<>();
+    List<Records> dataList = new ArrayList<>();
 
-    public WantAdapter(List<Data> dataList, Context context){
+    public WantAdapter(List<Records> dataList, Context context){
         this.dataList = Loader.getData(context);
         this.context = context;
     }
@@ -39,11 +40,11 @@ public class WantAdapter extends RecyclerView.Adapter<WantAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        Data datas = dataList.get(position);
-        holder.textTitle_main.setText(datas.title);
-        holder.textDateStart_main.setText(datas.date_start);
-        holder.textDateEnd_main.setText(datas.date_end);
-        holder.textExhibition_main.setText(datas.exhibition);
+        Records datas = dataList.get(position);
+        holder.textTitle_main.setText(datas.getTitle());
+        holder.textDateStart_main.setText(datas.getStartdate());
+        holder.textDateEnd_main.setText(datas.getEnddate());
+        holder.textExhibition_main.setText(datas.getLocation());
 
     }
 

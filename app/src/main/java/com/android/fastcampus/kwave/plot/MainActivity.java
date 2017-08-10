@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
     int day;
     private static final int DATE_DIALOG_ID = 1;
     static String url = "http://13.124.140.9:3456/exhibition_list/nofield";
-    List<String> datas = new ArrayList<>();
+    List<Records> datas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
      * 랭크 6~10위까지 보이기 RecyclerView Setting
      */
     private void setRecyclerView() {
-        ArrayList<Data> data = Loader.getData(this);
+        ArrayList<Records> data = Loader.getData(this);
         // RecyclerView Setting
         rankRecyclerAdapterMain = new RankRecyclerAdapterMain(data, this);
         rankRecycler_main.setAdapter(rankRecyclerAdapterMain);
@@ -446,19 +446,18 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
         }
     };
 
+
     @Override
     public void postExecute(String jsonString) {
         Gson gson = new Gson();
-        Log.i("Dum", "============datas============="+jsonString);
+        Log.i("Dum", "========================="+jsonString);
         Dummy dum = gson.fromJson(jsonString, Dummy.class);
         Log.i("Dum", "============datas============="+dum);
         Records rec[] = dum.getRecords();
-        Log.i("datas", "============datas============="+rec);
-        for(Records record : rec){
-            datas.add(record.getTitle());
-            Log.i("record","===========record=========="+record.getTitle());
+        Log.i("datas", "============rec length============="+rec.length);
+        for(int i = 0; i <rec.length; i++){
+            datas.add(rec[i]);
         }
-
     }
 
     @Override

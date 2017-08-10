@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.fastcampus.kwave.plot.DataSource.Data;
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,9 +23,10 @@ import java.util.List;
 
 public class FindRecyclerAdapterSearch extends RecyclerView.Adapter<FindRecyclerAdapterSearch.ViewHolder> {
 
-    private final List<Data> data;
+    private final List<Records> data;
+    private final List<Data> data1 = new ArrayList<>();
 
-    public FindRecyclerAdapterSearch(final List<Data> data) {
+    public FindRecyclerAdapterSearch(final List<Records> data) {
         this.data = data;
     }
 
@@ -35,11 +38,12 @@ public class FindRecyclerAdapterSearch extends RecyclerView.Adapter<FindRecycler
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        Data bbs = data.get(position);
-        holder.setTextTitle(bbs.title);
-        holder.setTextDateEnd(bbs.date_end);
-        holder.setTextExhibition(bbs.exhibition);
-        holder.setImage(bbs.rankBestImage[position*2]);
+        Records bbs = data.get(position);
+        Data datas = data1.get(position);
+        holder.setTextTitle(bbs.getTitle());
+        holder.setTextDateEnd(bbs.getEnddate());
+        holder.setTextExhibition(bbs.getLocation());
+        holder.setImage(datas.rankBestImage[position*2]);
         holder.setPosition(position);
     }
 
