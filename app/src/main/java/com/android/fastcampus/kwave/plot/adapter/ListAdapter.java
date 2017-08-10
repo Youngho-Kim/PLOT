@@ -76,6 +76,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DetailActivity.class);
+                    intent.putExtra("ListId", "category");
                     intent.putExtra("POSITION" , position);
                     intent.putExtra("fromList",  data.get(position));
                     context.startActivity(intent);

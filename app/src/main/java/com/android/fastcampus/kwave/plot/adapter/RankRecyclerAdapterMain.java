@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.android.fastcampus.kwave.plot.DataSource.Data;
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.DetailActivity;
 import com.android.fastcampus.kwave.plot.R;
 
@@ -23,15 +22,15 @@ import java.util.List;
  */
 
 public class RankRecyclerAdapterMain extends RecyclerView.Adapter<RankRecyclerAdapterMain.Holder>{
-    private List<Data> data = new ArrayList<>();
+    private List<Records> data = new ArrayList<>();
     private LayoutInflater inflater;
 
-    public RankRecyclerAdapterMain(List<Data> data, Context context) {
+    public RankRecyclerAdapterMain(List<Records> data, Context context) {
         this.data = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void setData(List<Data> data){
+    public void setData(List<Records> data){
         this.data = data;
     }
 
@@ -49,11 +48,11 @@ public class RankRecyclerAdapterMain extends RecyclerView.Adapter<RankRecyclerAd
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        Data bbs = data.get(position);
-        holder.setTextTitle(bbs.title);
-        holder.setTextDateEnd(bbs.date_end);
-        holder.setTextExhibition(bbs.exhibition);
-        holder.setImage(bbs.rankBestImage[position+5]);
+        Records records = data.get(position);
+        holder.setTextTitle(records.getTitle());
+        holder.setTextDateEnd(records.getEnddate());
+        holder.setTextExhibition(records.getLocation());
+//        holder.setImage(records.rankBestImage[position+5]);
         holder.setPosition(position);
     }
 
@@ -72,9 +71,11 @@ public class RankRecyclerAdapterMain extends RecyclerView.Adapter<RankRecyclerAd
             v.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), DetailActivity.class);
-                    intent.putExtra("LIST_POSITION", position);
-                    v.getContext().startActivity(intent);
+                     Intent intent = new Intent(v.getContext(), DetailActivity.class);
+                     intent.putExtra("ListId", "MainActivity");
+                     intent.putExtra("LIST_POSITION", position);
+                     intent.putExtra("fromMain", data.get(position));
+                     v.getContext().startActivity(intent);
                  }
             });
         }

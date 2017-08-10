@@ -31,6 +31,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     int position;
     Bundle bundle;
     Records records;
+    String listKey = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,11 +176,21 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private void setData(){
         Intent intent = getIntent();
         position = intent.getIntExtra("POSITION", -1);
-
+        listKey = intent.getStringExtra("ListId");
         bundle = intent.getExtras();
-        if(position > -1 ) {
-            records = (Records) bundle.getSerializable("fromList");
-            setValue();
+        switch (listKey){
+            case "category":
+                if(position > -1 ) {
+                    records = (Records) bundle.getSerializable("fromList");
+                    setValue();
+                }
+                break;
+            case "MainActivity":
+                if(position > -1 ) {
+                    records = (Records) bundle.getSerializable("fromMain");
+                    setValue();
+                }
+                break;
         }
     }
 
