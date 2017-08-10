@@ -14,9 +14,11 @@ import android.view.View;
 
 import com.android.fastcampus.kwave.plot.DataSource.Data;
 import com.android.fastcampus.kwave.plot.DataSource.Loader;
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.adapter.FindRecyclerAdapterSearch;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchActivity extends AppCompatActivity  {
     private FindRecyclerAdapterSearch findRecyclerAdapterSearch;
@@ -35,7 +37,7 @@ public class SearchActivity extends AppCompatActivity  {
     }
 
     private void initRecycler() {
-        ArrayList<Data> datas = Loader.getData(this);
+        List<Records> datas = new ArrayList<>();
         findRecyclerAdapterSearch = new FindRecyclerAdapterSearch(datas);
         noticeSearchRecycler.setAdapter(findRecyclerAdapterSearch);
         noticeSearchRecycler.setLayoutManager(new LinearLayoutManager(this));

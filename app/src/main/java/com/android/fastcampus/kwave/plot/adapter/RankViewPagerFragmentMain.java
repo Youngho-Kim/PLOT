@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.android.fastcampus.kwave.plot.DataSource.Data;
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.R;
 
 
@@ -17,7 +18,8 @@ import com.android.fastcampus.kwave.plot.R;
  */
 
 public class RankViewPagerFragmentMain extends Fragment {
-    Data data = new Data();
+    Records data = new Records();
+    Data datas = new Data();
     ImageView rankBest;
     private int mPageNumber;
 
@@ -40,7 +42,7 @@ public class RankViewPagerFragmentMain extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.rank_fragment_main, container, false);
         rankBest = ((ImageView) rootView.findViewById(R.id.rankBest));
-        rankBest.setImageResource(data.rankBestImage[mPageNumber]);
+        rankBest.setImageResource(datas.rankBestImage[mPageNumber]);
         return rootView;
     }
 }
