@@ -36,6 +36,7 @@ import com.android.fastcampus.kwave.plot.DataSource.Data;
 import com.android.fastcampus.kwave.plot.DataSource.Dummy;
 import com.android.fastcampus.kwave.plot.DataSource.ExpandableListDataSource;
 import com.android.fastcampus.kwave.plot.DataSource.Loader;
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.adapter.CustomExpandableListAdapter;
 import com.android.fastcampus.kwave.plot.adapter.RankRecyclerAdapterMain;
 import com.android.fastcampus.kwave.plot.adapter.RankViewPagerAdapterMain;
@@ -77,8 +78,8 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
     int month;
     int day;
     private static final int DATE_DIALOG_ID = 1;
-    static String url = "http://13.124.140.9:3456/exhibition_list/records";
-    List<Dummy> datas = new ArrayList<>();
+    static String url = "http://13.124.140.9:3456/exhibition_list/nofield";
+    List<String> datas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -448,9 +449,16 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
     @Override
     public void postExecute(String jsonString) {
         Gson gson = new Gson();
+        Log.i("Dum", "============datas============="+jsonString);
         Dummy dum = gson.fromJson(jsonString, Dummy.class);
-        datas.add(dum);
-        Log.i("datas", "============datas============="+jsonString);
+        Log.i("Dum", "============datas============="+dum);
+        Records rec[] = dum.getRecords();
+        Log.i("datas", "============datas============="+rec);
+        for(Records record : rec){
+            datas.add(record.getTitle());
+            Log.i("record","===========record=========="+record.getTitle());
+        }
+
     }
 
     @Override

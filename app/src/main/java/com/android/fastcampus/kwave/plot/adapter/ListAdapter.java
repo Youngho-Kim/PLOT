@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.android.fastcampus.kwave.plot.DataSource.Dummy;
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.R;
 
 import java.util.ArrayList;
@@ -22,9 +22,10 @@ import java.util.List;
  */
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
-    List<Dummy> data = new ArrayList<>();
+    List<Records> data = new ArrayList<>();
+
     Context context = null;
-    public void setData(List<Dummy> datas){
+    public void setData(List<Records> datas){
         this.data = datas;
     }
     @Override
@@ -34,22 +35,26 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
         }
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_list_list, parent,false);
         return new Holder(view);
+
     }
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        Dummy datas = data.get(position);
+
+        Records records = data.get(position);
         holder.setPosition(position);
-        holder.title.setText(datas.getTitle());
-        holder.location.setText(datas.getLocation());
-        holder.period.setText(datas.getStartdate());
-//        Glide.with(context).load(datas.image).into(holder.poster);
-//        holder.ratingBar.setRating(datas.star);
+        holder.title.setText(records.getTitle());
+        holder.location.setText(records.getLocation());
+        holder.period.setText(records.getStartdate());
+            //Glide.with(context).load(datas.image).into(holder.poster);
+            //holder.ratingBar.setRating(datas.star);
+
     }
 
     @Override
     public int getItemCount() {
         return data.size();
+
     }
 
 

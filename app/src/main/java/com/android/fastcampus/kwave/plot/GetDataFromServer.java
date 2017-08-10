@@ -14,14 +14,14 @@ import java.net.URL;
 public class GetDataFromServer {
 
     public static String getData(String url) throws Exception{
-        String result = null;
+        String result = "";
         URL serverUrl = new URL(url);
         HttpURLConnection con = (HttpURLConnection) serverUrl.openConnection();
         con.setRequestMethod("GET");
 
         int responseCode = con.getResponseCode();
         if(responseCode == HttpURLConnection.HTTP_OK){
-            String temp = null;
+            String temp = "";
             BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
             while((temp = br.readLine()) != null){
                 result += temp;

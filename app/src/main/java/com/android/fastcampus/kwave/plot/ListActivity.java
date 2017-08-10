@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.android.fastcampus.kwave.plot.DataSource.Dummy;
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.adapter.ListAdapter;
 import com.google.gson.Gson;
 
@@ -19,7 +20,7 @@ import static com.android.fastcampus.kwave.plot.ThrowData2Activity.task;
 public class ListActivity extends AppCompatActivity implements IData {
     RecyclerView recycler;
     ListAdapter adapter;
-    List<Dummy> datas = new ArrayList<>();
+    List<Records> datas = new ArrayList<>();
 
 
 
@@ -42,9 +43,15 @@ public class ListActivity extends AppCompatActivity implements IData {
     @Override
     public void postExecute(String jsonString) {
         Gson gson = new Gson();
+        Log.i("Dum", "========================="+jsonString);
         Dummy dum = gson.fromJson(jsonString, Dummy.class);
-        datas.add(dum);
-        Log.i("datas", "============datas============="+datas);
+        Log.i("Dum", "============datas============="+dum);
+        Records rec[] = dum.getRecords();
+        Log.i("datas", "============rec length============="+rec.length);
+        for(int i = 0; i <rec.length; i++){
+            datas.add(rec[i]);
+        }
+
     }
 
     @Override
