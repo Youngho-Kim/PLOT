@@ -9,9 +9,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.android.fastcampus.kwave.plot.DataSource.Data;
+import com.android.fastcampus.kwave.plot.DataSource.Dummy;
 import com.android.fastcampus.kwave.plot.R;
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +22,9 @@ import java.util.List;
  */
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
-    List<Data> data = new ArrayList<>();
+    List<Dummy> data = new ArrayList<>();
     Context context = null;
-    public void setData(List<Data> datas){
+    public void setData(List<Dummy> datas){
         this.data = datas;
     }
     @Override
@@ -39,19 +38,21 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        Data datas = data.get(position);
+        Dummy datas = data.get(position);
         holder.setPosition(position);
-        holder.title.setText(datas.title);
-        holder.location.setText(datas.exhibition);
-        holder.period.setText(datas.date_start);
-        Glide.with(context).load(datas.image).into(holder.poster);
-        holder.ratingBar.setRating(datas.star);
+        holder.title.setText(datas.getTitle());
+        holder.location.setText(datas.getLocation());
+        holder.period.setText(datas.getStartdate());
+//        Glide.with(context).load(datas.image).into(holder.poster);
+//        holder.ratingBar.setRating(datas.star);
     }
 
     @Override
     public int getItemCount() {
         return data.size();
     }
+
+
     class Holder extends RecyclerView.ViewHolder{
         TextView title, location, period;
         ImageView poster;

@@ -9,7 +9,7 @@ import static com.android.fastcampus.kwave.plot.GetDataFromServer.getData;
  */
 
 public class ThrowData2Activity {
-    public static void Task(final IData idata){
+    public static void task(final IData idata){
         new AsyncTask<String, Void, String>(){
             String result = null;
             @Override

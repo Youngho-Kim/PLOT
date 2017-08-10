@@ -6,12 +6,12 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.fastcampus.kwave.plot.DataSource.Data;
+import com.android.fastcampus.kwave.plot.DataSource.Dummy;
 import com.android.fastcampus.kwave.plot.DataSource.ExpandableListDataSource;
 import com.android.fastcampus.kwave.plot.DataSource.Loader;
 import com.android.fastcampus.kwave.plot.adapter.CustomExpandableListAdapter;
@@ -41,14 +42,16 @@ import com.android.fastcampus.kwave.plot.adapter.RankViewPagerAdapterMain;
 import com.android.fastcampus.kwave.plot.navigation.FragmentNavigationManager;
 import com.android.fastcampus.kwave.plot.navigation.NaviDrawerSetting;
 import com.android.fastcampus.kwave.plot.navigation.NavigationManager;
-
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements NaviDrawerSetting, View.OnClickListener {
+import static com.android.fastcampus.kwave.plot.ThrowData2Activity.task;
+
+public class MainActivity extends AppCompatActivity implements NaviDrawerSetting, View.OnClickListener, IData {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -74,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
     int month;
     int day;
     private static final int DATE_DIALOG_ID = 1;
+    static String url = "http://13.124.140.9:3456/exhibition_list/records";
+    List<Dummy> datas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
         if (savedInstanceState == null) {
             selectFirstItemAsDefault();
         }
+
+        task(this);
         initNaviDrawer();
         initToolbar();
 
@@ -302,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
                 btnNaviUserLogin.setVisibility(View.VISIBLE);
                 break;
             case R.id.textHome :
-                intent = new Intent(MainActivity.this, MainActivity.class);
+                intent = new Intent(MainActivity.this, ListActivity.class);
                 startActivity(intent);
                 break;
             case R.id.textMypage :
@@ -438,5 +445,16 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
         }
     };
 
+    @Override
+    public void postExecute(String jsonString) {
+        Gson gson = new Gson();
+        Dummy dum = gson.fromJson(jsonString, Dummy.class);
+        datas.add(dum);
+        Log.i("datas", "============datas============="+jsonString);
+    }
 
+    @Override
+    public String getUrl() {
+        return url;
+    }
 }
