@@ -1,10 +1,12 @@
 package com.android.fastcampus.kwave.plot.DataSource;
 
+import java.io.Serializable;
+
 /**
  * Created by maxx on 2017. 8. 10..
  */
 
-public class Records {
+public class Records implements Serializable{
     private String parking;
 
     private String phonenumber_info;

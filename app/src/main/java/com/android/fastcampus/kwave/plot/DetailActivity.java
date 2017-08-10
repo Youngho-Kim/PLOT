@@ -6,13 +6,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +28,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     PagerAdapter adapter;
     TabLayout tab;
     ViewPager pager;
-    private final int REQ_PERMISSION = 100;
-
+    int position;
+    Bundle bundle;
+    Records records;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         setFragments();
         setTab2Pager();
         setPageAdapter();
-
-
+        setData();
     }
     /*
     위젯 세팅
@@ -166,5 +167,28 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = new Intent(DetailActivity.this, CommentActivity.class);
         intent.putExtra("Title", textTitle.getText().toString());
         startActivity(intent);
+    }
+
+    /**
+     * ListActivity 에서 데이터 넘겨 받기
+     */
+    private void setData(){
+        Intent intent = getIntent();
+        position = intent.getIntExtra("POSITION", -1);
+
+        bundle = intent.getExtras();
+        if(position > -1 ) {
+            records = (Records) bundle.getSerializable("fromList");
+            setValue();
+        }
+    }
+
+    /*
+    ListActivity 정보 DetailActivity widget 에 연결
+     */
+    private void setValue(){
+        textTitle.setText(records.getTitle());
+        textPeriod.setText(records.getStartdate());
+        textAddr.setText(records.getLocation());
     }
 }

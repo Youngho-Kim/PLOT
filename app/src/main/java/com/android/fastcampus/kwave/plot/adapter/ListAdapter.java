@@ -1,6 +1,7 @@
 package com.android.fastcampus.kwave.plot.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.android.fastcampus.kwave.plot.DataSource.Records;
+import com.android.fastcampus.kwave.plot.DetailActivity;
 import com.android.fastcampus.kwave.plot.R;
 
 import java.util.ArrayList;
@@ -70,6 +72,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
             period = (TextView) v.findViewById(R.id.period);
             poster = (ImageView) v.findViewById(R.id.poster);
             ratingBar = (RatingBar) v.findViewById(R.id.writeRatingBar);
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, DetailActivity.class);
+                    intent.putExtra("POSITION" , position);
+                    intent.putExtra("fromList",  data.get(position));
+                    context.startActivity(intent);
+                }
+            });
         }
         public void setPosition(int position){
             this.position = position;
