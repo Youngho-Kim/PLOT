@@ -348,7 +348,7 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
                     Toast.makeText(getApplicationContext(), genre.getItem(position) + Integer.toString(position), Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getApplicationContext(), genre.getItem(position) + Integer.toString(position), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                    Intent intent = new Intent(MainActivity.this, com.android.fastcampus.kwave.plot.ListActivity.class);
                     startActivity(intent);
                 }
             }
@@ -370,7 +370,7 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
 
                 }else{
                     Toast.makeText(getApplicationContext(), location.getItem(position) + Integer.toString(position), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                    Intent intent = new Intent(MainActivity.this, com.android.fastcampus.kwave.plot.ListActivity.class);
                     startActivity(intent);
                 }
 
