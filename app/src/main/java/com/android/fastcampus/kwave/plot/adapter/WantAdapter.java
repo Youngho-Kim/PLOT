@@ -27,7 +27,7 @@ public class WantAdapter extends RecyclerView.Adapter<WantAdapter.Holder> {
     List<Records> dataList = new ArrayList<>();
 
     public WantAdapter(List<Records> dataList, Context context){
-        this.dataList = Loader.getData(context);
+        this.dataList = dataList;
         this.context = context;
     }
 
