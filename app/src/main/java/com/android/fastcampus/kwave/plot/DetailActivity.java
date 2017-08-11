@@ -1,6 +1,7 @@
 package com.android.fastcampus.kwave.plot;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,15 +9,26 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.Fragments.ExDetailFragment;
 import com.android.fastcampus.kwave.plot.Fragments.ExInfoFragment;
 import com.android.fastcampus.kwave.plot.Fragments.ExReviewFragment;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +38,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     ImageView postImg;
     TextView textTitle, textPeriod, textAddr;
     Button btnBooking, btnLocation, btnReview, btnWant;
-    Fragment ExDetail, ExInfo, ExMap, ExReview;
+    Fragment ExDetail, ExInfo, ExReview;
     List<Fragment> pages;
     PagerAdapter adapter;
     TabLayout tab;
@@ -35,6 +47,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     Bundle bundle;
     Records records;
     String listKey = "";
+    private CallbackManager callbackManager;
+    ShareDialog shareDialog;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,5 +235,38 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         textAddr.setText(records.getLocation());
     }
 
+    //액션바 버튼 추가
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
 
+    //액션바의 공유버튼을 눌렀을 때 실행되는 함수 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        shareDialog = new ShareDialog(this);
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+            @Override
+            public void onSuccess(Sharer.Result result) {
+                Toast.makeText(DetailActivity.this, "공유 됬다", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel() {
+                Toast.makeText(DetailActivity.this, "공유 취소 됬다", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Toast.makeText(DetailActivity.this, "안된다.....ERROR", Toast.LENGTH_SHORT).show();
+            }
+        });
+        ShareLinkContent shareLinkContent = new ShareLinkContent.Builder().setContentUrl(Uri.parse("http://naver.com")).build();
+        shareDialog.show(shareLinkContent);
+        return super.onOptionsItemSelected(item);
+    }
 }

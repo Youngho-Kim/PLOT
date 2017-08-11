@@ -9,6 +9,7 @@
     <string name="mypage">MY PAGE</string>
     <string name="date"> 2017 8월 1일</string>
     <string name="selected_item">Selected item</string>
+    <string name="facebook_app_id">839204656247789</string>
 
     <string-array name="plotCategory">
         <item>장르</item>
