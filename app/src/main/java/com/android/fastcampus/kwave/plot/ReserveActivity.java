@@ -90,6 +90,8 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
 
                 setDate();
                 setNoti(resultPrice);
+                Intent intent = new Intent(ReserveActivity.this,PayActivity.class);
+                startActivity(intent);
         }
     }
 
