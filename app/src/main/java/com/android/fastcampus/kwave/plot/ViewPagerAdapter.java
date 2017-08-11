@@ -4,6 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.android.fastcampus.kwave.plot.Fragments.CommentsFragment;
+import com.android.fastcampus.kwave.plot.Fragments.ViewedFragment;
+import com.android.fastcampus.kwave.plot.Fragments.WantFragment;
+
 /**
  * Created by XPS on 2017-08-07.
  */

@@ -1,4 +1,4 @@
-package com.android.fastcampus.kwave.plot;
+package com.android.fastcampus.kwave.plot.Fragments;
 
 
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.fastcampus.kwave.plot.R;
 
 
 /**

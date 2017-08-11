@@ -1,4 +1,4 @@
-package com.android.fastcampus.kwave.plot;
+package com.android.fastcampus.kwave.plot.Fragments;
 
 
 import android.os.Bundle;
@@ -9,9 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.fastcampus.kwave.plot.DataSource.Data;
-import com.android.fastcampus.kwave.plot.DataSource.Loader;
 import com.android.fastcampus.kwave.plot.DataSource.Records;
+import com.android.fastcampus.kwave.plot.R;
 import com.android.fastcampus.kwave.plot.adapter.WantAdapter;
 
 import java.util.List;
