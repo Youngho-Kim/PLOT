@@ -181,7 +181,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
      */
     private void goMap(){
         Intent intent = new Intent(DetailActivity.this, MapsActivity.class);
-        intent.putExtra("fromDetail", records.getLocation());
+        intent.putExtra("fromDetailAddress", records.getAddress_road());
+        intent.putExtra("fromDetailLocation", records.getLocation());
         startActivity(intent);
     }
 

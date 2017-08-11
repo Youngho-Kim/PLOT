@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-import com.android.fastcampus.kwave.plot.DataSource.Records;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -22,9 +22,6 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap myMap;
-    String detailKey;
-    Bundle bundle;
-    Records records;
     LatLng latLng;
     Marker marker;
     @Override
@@ -39,20 +36,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
+        String temp = "";
+        String temp1 = "";
         myMap = googleMap;
         Intent intent = getIntent();
-        Log.i("intent" , "=================intent=============="+intent);
-        records.setLocation(intent.getExtras().getString("fromDetail"));
-        Log.i("records.setLocation" , "=================intent=============="+records.getLocation());
-        latLng = findGeoPoint(records.getLocation());
+        temp = intent.getExtras().getString("fromDetailAddress");
+        temp1 = intent.getExtras().getString("fromDetailLocation");
+        latLng = findGeoPoint(temp);
         if (latLng != null) {
             marker = myMap.addMarker(new MarkerOptions()
                     .position(latLng)
-                    .title(records.getLocation())
+                    .title(temp1)
                     .icon(BitmapDescriptorFactory.defaultMarker()));
             marker.showInfoWindow();
-
+            myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,17));
         }
     }
 
@@ -66,7 +63,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         Address lating = addr.get(0);
         double lat = lating.getLatitude(); // 위도가져오기
+        Log.i("lat" , "=============lat============"+lat);
         double lon = lating.getLongitude(); // 경도가져오기
+        Log.i("lon" , "=============lon============"+lon);
         latLng = new LatLng(lat, lon);
         return latLng;
     }
