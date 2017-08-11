@@ -19,6 +19,7 @@ public class PayActivity extends AppCompatActivity {
 
     private WebView mainWebView;
     private static final String APP_SCHEME = "iamporttest://";
+    ReserveActivity reserveActivity = new ReserveActivity();
 
     @SuppressLint("NewApi") @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class PayActivity extends AppCompatActivity {
                 String redirectURL = url.substring(APP_SCHEME.length()+3);
                 mainWebView.loadUrl(redirectURL);
             }
+            reserveActivity.setNoti(1004);
         }
     }
 
