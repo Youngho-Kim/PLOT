@@ -18,9 +18,9 @@ import java.net.URISyntaxException;
 public class PayActivity extends AppCompatActivity {
 
     private WebView mainWebView;
-    private static final String APP_SCHEME = "iamporttest://";
+    private static final String APP_SCHEME = "plot://";
     ReserveActivity reserveActivity = new ReserveActivity();
-
+    int resultPrice;
     @SuppressLint("NewApi") @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +50,9 @@ public class PayActivity extends AppCompatActivity {
                 String redirectURL = url.substring(APP_SCHEME.length()+3);
                 mainWebView.loadUrl(redirectURL);
             }
-            reserveActivity.setNoti(1004);
+
+
+            reserveActivity.setNoti(intent.getIntExtra("resultPrice", resultPrice));
         }
     }
 

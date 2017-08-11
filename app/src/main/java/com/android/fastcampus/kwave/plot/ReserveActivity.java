@@ -89,9 +89,11 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
 
 
                 setDate();
-                setNoti(resultPrice);
-                Intent intent = new Intent(ReserveActivity.this,PayActivity.class);
+                Intent intent = new Intent(ReserveActivity.this, PayActivity.class);
+                intent.putExtra("resultPrice", resultPrice);
+                //setNoti(resultPrice);
                 startActivity(intent);
+
         }
     }
 
@@ -122,7 +124,9 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
         }
         // 스피너로 인원 수 선택 후 값을 합산하여 보여줌.
         resultPrice = normalPrice + studentPrice + packagePrice + weekdayPrice + weekendPrice;
+
         txtPriceResult.setText(resultPrice+"");
+
     }
 
     @Override
