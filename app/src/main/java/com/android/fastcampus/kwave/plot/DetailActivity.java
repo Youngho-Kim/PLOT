@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.fastcampus.kwave.plot.DataSource.Records;
+import com.android.fastcampus.kwave.plot.Fragments.ExDetailFragment;
+import com.android.fastcampus.kwave.plot.Fragments.ExInfoFragment;
+import com.android.fastcampus.kwave.plot.Fragments.ExReviewFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,11 +64,14 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         btnBooking.setOnClickListener(this);
 
         btnLocation = (Button) findViewById(R.id.btnLocation);
+        btnLocation.setOnClickListener(this);
         btnReview = (Button) findViewById(R.id.btnReview);
         btnReview.setOnClickListener(this);
         btnWant = (Button) findViewById(R.id.btnWant);
 
     }
+
+
     /*
    뷰페이저 생성
     */
@@ -100,6 +106,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btnBooking:
                 goReserve();
                 break;
+            case R.id.btnLocation:
+                goMap();
+                break;
             case R.id.btnReview:
                 goComment();
                 break;
@@ -132,12 +141,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         pages = new ArrayList<>();
         ExDetail = new ExDetailFragment();
         ExInfo = new ExInfoFragment();
-        ExMap = new ExMapFragment();
         ExReview = new ExReviewFragment();
 
         pages.add(ExDetail);
         pages.add(ExInfo);
-        pages.add(ExMap);
         pages.add(ExReview);
     }
 
@@ -149,7 +156,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         tab.addTab(tab.newTab().setText("전시 상세"));
         tab.addTab(tab.newTab().setText("전시 정보"));
         tab.addTab(tab.newTab().setText("관람평"));
-        tab.addTab(tab.newTab().setText("전시장 위치"));
     }
 
     /*
@@ -170,6 +176,15 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         startActivity(intent);
     }
 
+    /*
+    지도 액티비티로 이동하는 함수
+     */
+    private void goMap(){
+        Intent intent = new Intent(DetailActivity.this, MapsActivity.class);
+        intent.putExtra("fromDetail", records.getLocation());
+        startActivity(intent);
+    }
+
     /**
      * ListActivity 에서 데이터 넘겨 받기
      */
@@ -185,6 +200,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                     setValue();
                 }
                 break;
+
             case "MainActivity":
                 if(position > -1 ) {
                     records = (Records) bundle.getSerializable("fromMain");
@@ -202,4 +218,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         textPeriod.setText(records.getStartdate());
         textAddr.setText(records.getLocation());
     }
+
+
 }

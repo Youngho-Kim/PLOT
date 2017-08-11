@@ -21,7 +21,7 @@ public class GetDataFromServer {
 
         int responseCode = con.getResponseCode();
         if(responseCode == HttpURLConnection.HTTP_OK){
-            String temp = "";
+            String temp = null;
             BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
             while((temp = br.readLine()) != null){
                 result += temp;
