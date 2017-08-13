@@ -133,7 +133,9 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
         rankViewPagerMain = (ViewPager) findViewById(R.id.rankViewPager_main);
         viewPagerAdapterMain = new RankViewPagerAdapterMain(getSupportFragmentManager());
         rankViewPagerMain.setAdapter(viewPagerAdapterMain);
-
+        /**
+         * 뷰페이저 인디케이터 구현하는 부분
+         */
         PageIndicatorView pageIndicatorView = (PageIndicatorView) findViewById(R.id.pageIndicatorView);
         pageIndicatorView.setViewPager(rankViewPagerMain);
     }
