@@ -42,6 +42,8 @@ import com.android.fastcampus.kwave.plot.navigation.FragmentNavigationManager;
 import com.android.fastcampus.kwave.plot.navigation.NaviDrawerSetting;
 import com.android.fastcampus.kwave.plot.navigation.NavigationManager;
 import com.google.gson.Gson;
+import com.rd.IndicatorManager;
+import com.rd.PageIndicatorView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -131,6 +133,9 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
         rankViewPagerMain = (ViewPager) findViewById(R.id.rankViewPager_main);
         viewPagerAdapterMain = new RankViewPagerAdapterMain(getSupportFragmentManager());
         rankViewPagerMain.setAdapter(viewPagerAdapterMain);
+
+        PageIndicatorView pageIndicatorView = (PageIndicatorView) findViewById(R.id.pageIndicatorView);
+        pageIndicatorView.setViewPager(rankViewPagerMain);
     }
 
 
