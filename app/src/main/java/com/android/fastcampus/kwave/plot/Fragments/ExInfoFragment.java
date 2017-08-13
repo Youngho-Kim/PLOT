@@ -3,6 +3,7 @@ package com.android.fastcampus.kwave.plot.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +12,17 @@ import android.widget.TextView;
 import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ExInfoFragment extends Fragment {
+
     TextView textOrg, textGenre, textTarget, textPrice, textHomepage;
-    public Records records = new Records();
+    public static Records records;
 
     public ExInfoFragment() {
         // Required empty public constructor
@@ -27,6 +32,7 @@ public class ExInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_ex_info, container, false);
         textOrg = (TextView) view.findViewById(R.id.textOrg);
         textGenre = (TextView) view.findViewById(R.id.textGenre);

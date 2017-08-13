@@ -9,12 +9,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +38,7 @@ import java.util.List;
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView postImg;
-    TextView textTitle, textPeriod, textAddr;
+    TextView textTitle, textStartDate, textEndDate, textAddr;
     Button btnBooking, btnLocation, btnReview, btnWant;
     ExDetailFragment ExDetail;
     ExInfoFragment ExInfo;
@@ -51,7 +53,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     String listKey = "";
     private CallbackManager callbackManager;
     ShareDialog shareDialog;
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private void setWidget(){
 
         textTitle = (TextView) findViewById(R.id.textTitle);
-        textPeriod = (TextView) findViewById(R.id.textPeriod);
+        textStartDate = (TextView) findViewById(R.id.textStartDate);
+        textEndDate = (TextView) findViewById(R.id.textEndDate);
         textAddr = (TextView) findViewById(R.id.textAddr);
 
         postImg = (ImageView) findViewById(R.id.postImg);
@@ -220,7 +223,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             case "category":
                 if(position > -1 ) {
                     records = (Records) bundle.getSerializable("fromList");
+                    Log.i("records", records+"");
+                    Log.i("records address_road",records.getAddress_road());
                     ExDetail.records = records;
+                    Log.e("ExDetail", ExDetail.records+"");
                     ExInfo.records = records;
                     ExReview.records = records;
                     setValue();
@@ -242,7 +248,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
      */
     private void setValue(){
         textTitle.setText(records.getTitle());
-        textPeriod.setText(records.getStartdate());
+        textStartDate.setText(records.getStartdate());
+        textEndDate.setText(records.getEnddate());
         textAddr.setText(records.getLocation());
     }
 
@@ -257,6 +264,11 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     //액션바의 공유버튼을 눌렀을 때 실행되는 함수
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        fbShare();
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void fbShare(){
         FacebookSdk.sdkInitialize(getApplicationContext());
         shareDialog = new ShareDialog(this);
         callbackManager = CallbackManager.Factory.create();
@@ -278,6 +290,5 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         });
         ShareLinkContent shareLinkContent = new ShareLinkContent.Builder().setContentUrl(Uri.parse("http://naver.com")).build();
         shareDialog.show(shareLinkContent);
-        return super.onOptionsItemSelected(item);
     }
 }

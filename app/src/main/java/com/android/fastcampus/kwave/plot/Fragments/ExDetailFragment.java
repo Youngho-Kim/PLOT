@@ -19,10 +19,11 @@ import com.android.fastcampus.kwave.plot.R;
 public class ExDetailFragment extends Fragment {
     TextView ExplainText;
     ImageView ExplainImg;
-    public Records records = new Records();
+    public static Records records;
 
     public ExDetailFragment() {
         // Required empty public constructor
+
     }
 
 
