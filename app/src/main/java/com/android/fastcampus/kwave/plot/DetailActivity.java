@@ -38,7 +38,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     ImageView postImg;
     TextView textTitle, textPeriod, textAddr;
     Button btnBooking, btnLocation, btnReview, btnWant;
-    Fragment ExDetail, ExInfo, ExReview;
+    ExDetailFragment ExDetail;
+    ExInfoFragment ExInfo;
+    ExReviewFragment ExReview;
     List<Fragment> pages;
     PagerAdapter adapter;
     TabLayout tab;
@@ -161,6 +163,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         pages.add(ExDetail);
         pages.add(ExInfo);
         pages.add(ExReview);
+        ExDetail = (ExDetailFragment) getSupportFragmentManager().findFragmentById(R.id.pager);
+        ExInfo = (ExInfoFragment) getSupportFragmentManager().findFragmentById(R.id.pager);
+        ExReview = (ExReviewFragment) getSupportFragmentManager().findFragmentById(R.id.pager);
+
     }
 
     /*
@@ -205,6 +211,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
      * ListActivity 에서 데이터 넘겨 받기
      */
     private void setData(){
+
         Intent intent = getIntent();
         position = intent.getIntExtra("POSITION", -1);
         listKey = intent.getStringExtra("ListId");
@@ -213,7 +220,11 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             case "category":
                 if(position > -1 ) {
                     records = (Records) bundle.getSerializable("fromList");
+                    ExDetail.records = records;
+                    ExInfo.records = records;
+                    ExReview.records = records;
                     setValue();
+
                 }
                 break;
 
@@ -243,7 +254,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         return true;
     }
 
-    //액션바의 공유버튼을 눌렀을 때 실행되는 함수 
+    //액션바의 공유버튼을 눌렀을 때 실행되는 함수
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         FacebookSdk.sdkInitialize(getApplicationContext());

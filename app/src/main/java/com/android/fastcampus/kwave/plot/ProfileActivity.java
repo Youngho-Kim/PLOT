@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.android.fastcampus.kwave.plot.adapter.ViewPagerAdapter;
+
 public class ProfileActivity extends AppCompatActivity {
 
     TabLayout tabLayout;

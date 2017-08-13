@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.R;
 
 
@@ -18,6 +19,7 @@ import com.android.fastcampus.kwave.plot.R;
 public class ExDetailFragment extends Fragment {
     TextView ExplainText;
     ImageView ExplainImg;
+    public Records records = new Records();
 
     public ExDetailFragment() {
         // Required empty public constructor

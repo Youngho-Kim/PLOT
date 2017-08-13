@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.R;
 import com.android.fastcampus.kwave.plot.adapter.ExReviewAdapter;
 
@@ -18,6 +19,7 @@ import com.android.fastcampus.kwave.plot.adapter.ExReviewAdapter;
 public class ExReviewFragment extends Fragment {
     RecyclerView reviewRecycler;
     ExReviewAdapter ExAdapter;
+    public Records records = new Records();
 
     public ExReviewFragment() {
         // Required empty public constructor

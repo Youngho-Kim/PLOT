@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.R;
 
 
@@ -16,6 +17,7 @@ import com.android.fastcampus.kwave.plot.R;
  */
 public class ExInfoFragment extends Fragment {
     TextView textOrg, textGenre, textTarget, textPrice, textHomepage;
+    public Records records = new Records();
 
     public ExInfoFragment() {
         // Required empty public constructor
@@ -31,7 +33,14 @@ public class ExInfoFragment extends Fragment {
         textTarget = (TextView) view.findViewById(R.id.textTarget);
         textPrice = (TextView) view.findViewById(R.id.textPrice);
         textHomepage = (TextView) view.findViewById(R.id.textHomepage);
+        setValue();
         return view;
     }
 
+    public void setValue(){
+        textOrg.setText(records.getMainagency());
+        textPrice.setText(records.getPrice());
+        textHomepage.setText(records.getHomepage());
+        textTarget.setText(records.getAge());
+    }
 }

@@ -1,4 +1,4 @@
-package com.android.fastcampus.kwave.plot;
+package com.android.fastcampus.kwave.plot.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
