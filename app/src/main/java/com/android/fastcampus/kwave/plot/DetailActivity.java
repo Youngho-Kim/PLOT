@@ -35,6 +35,8 @@ import com.facebook.share.widget.ShareDialog;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Intent.ACTION_SEND;
+
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView postImg;
@@ -263,22 +265,45 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
        inflater.inflate(R.menu.menu, menu);
+
         return true;
     }
 
     //액션바의 공유버튼을 눌렀을 때 실행되는 함수
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        fbShare();
+        /*
+            item의 id값으로 어떤 메뉴버튼을 눌렀는지 판별함.
+         */
+        switch(item.getItemId()){
+            /*
+                페이스북 이외의 앱(카카오톡, 문자메세지 등)을 선택할 수 있도록 함.
+                단, 에뮬레이터에서 실행하면. 에뮬레이터에 설치된 앱이 없기 때문에 자동으로 sms 앱으로 넘어감.
+             */
+            case R.id.menu:
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                Intent chooser = Intent.createChooser(intent, "공유할 앱 선택");
+                startActivity(chooser);
+                break;
+            /*
+                페이스북 버튼을 눌러 페이스북에서 공유할 수 있도록 함.
+             */
+            case R.id.fbshare:
+                fbShare();
+                break;
+        }
+
+
+        //fbShare();
         return super.onOptionsItemSelected(item);
     }
 
 
 
     /*
-    * 페이스북 공유하기 기능
+    * 페이스북 공유하기 기능을 구현한 함수
     * */
-
 
     private void fbShare(){
         FacebookSdk.sdkInitialize(getApplicationContext());
