@@ -17,7 +17,7 @@ import com.android.fastcampus.kwave.plot.R;
  */
 public class ExInfoFragment extends Fragment {
     TextView textOrg, textGenre, textTarget, textPrice, textHomepage;
-    public Records records = new Records();
+    public static Records records;
 
     public ExInfoFragment() {
         // Required empty public constructor

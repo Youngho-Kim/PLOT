@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -220,11 +221,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             case "category":
                 if(position > -1 ) {
                     records = (Records) bundle.getSerializable("fromList");
-                    ExDetail.records = records;
+                    Log.i("records","================"+records);
                     ExInfo.records = records;
-                    ExReview.records = records;
                     setValue();
-
                 }
                 break;
 
