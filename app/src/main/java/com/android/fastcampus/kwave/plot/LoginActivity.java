@@ -74,6 +74,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        initView();
+    }
+
+
+    private void initView() {
+        loginProgress = (ProgressBar) findViewById(R.id.login_progress);
+        loginForm = (ScrollView) findViewById(R.id.login_form);
+        emailLoginForm = (LinearLayout) findViewById(R.id.email_login_form);
+        textEmail = (AutoCompleteTextView) findViewById(R.id.email);
+        editPassword = (EditText) findViewById(R.id.password);
+        emailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        emailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
+        mLoginFormView = findViewById(R.id.login_form);
+        mProgressView = findViewById(R.id.login_progress);
+        emailSignInButton.setOnClickListener(this);
+        emailSignUpButton.setOnClickListener(this);
         // Set up the login form.
         populateAutoComplete();
 
@@ -88,22 +104,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
-        initView();
-    }
 
-
-    private void initView() {
-        loginProgress = (ProgressBar) findViewById(R.id.login_progress);
-        loginForm = (ScrollView) findViewById(R.id.login_form);
-        emailLoginForm = (LinearLayout) findViewById(R.id.email_login_form);
-        textEmail = (AutoCompleteTextView) findViewById(R.id.email);
-        editPassword = (EditText) findViewById(R.id.password);
-        emailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        emailSignUpButton = (Button) findViewById(R.id.email_sign_up_button);
-        emailSignInButton.setOnClickListener(this);
-        emailSignUpButton.setOnClickListener(this);
     }
 
     @Override
