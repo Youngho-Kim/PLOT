@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -17,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.View;
@@ -27,6 +29,18 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +51,11 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+    private CallbackManager callbackManager;
+    LoginButton fbLogin;
+    AccessTokenTracker accessTokenTracker;
+    String userToken;
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -67,6 +86,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+
+        /* 페이스북 로그인을 위한 버튼 및 함수 설정 시작 */
+        fbLogin = (LoginButton) findViewById(R.id.fbLogin);
+        fbLoginProcess();
+        /* 페이스북 로그인을 위한 버튼 및 함수 설정 끝 */
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -294,6 +318,83 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
+    }
+
+
+    /* 페이스북 로그인 프로세스 (별도의 함수로 분리하였습니다.)
+     */
+    private void fbLoginProcess(){
+
+        /*
+            1) CallbackManager 객체를 선언해서 Factory.create() 함수를 호출하여 생성합니다.
+            (자세히는 알 수 없지만, facebook 서버와의 연동을 대신 맡아서 해주는 듯)
+        */
+        callbackManager = CallbackManager.Factory.create();
+
+        /*
+            2) Login 부분을 담당하는 LoginManager 호출. LoginManager.getInstance()로 현재 내용을 불러온 뒤
+            콜백매니저에 LoginManager를 등록합니다.
+            이러면, 로그인이 완료되었을 때 CallbackManager에 상황별로 해야할 일을 부여할 수 있습니다.
+         */
+
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Toast.makeText(getBaseContext(), "로그인 성공 : " + userToken, Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+            @Override
+            public void onCancel() {
+                // TODO 로그인 실패시
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                // TODO 로그인 에러시
+            }
+        });
+
+        /*
+            페이스북 로그인 시 토큰 받아오기
+
+            1) accessTokenTracker로 현재 토큰이 있는지, 없으면 새로 만든 토큰은 무엇인지 추적합니다.
+            로그인 기능과 연동되므로 'AccessTokenTracker'만 생성해주면 됩니다.
+         */
+
+        accessTokenTracker = new AccessTokenTracker() {
+
+            /*
+                토큰 감지
+                토큰은 그냥 string 값으로 받아옵니다.
+             */
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                if(currentAccessToken != null){
+                    userToken = currentAccessToken.getToken();
+                } else {
+                    userToken = oldAccessToken.getToken();
+                }
+            }
+        };
+
+
+
+
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        /*
+            onActivityResult에 반드시 callbackManager의 결과값을 등록해야 합니다.
+            등록하지 않으면 callbackmanager가 실행되지 않아 아무런 결과도 얻어올 수 없습니다.
+         */
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
     }
 
     /**

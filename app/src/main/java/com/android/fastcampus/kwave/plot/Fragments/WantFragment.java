@@ -9,11 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.fastcampus.kwave.plot.DataSource.Loader;
 import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.R;
+import com.android.fastcampus.kwave.plot.adapter.ListAdapter;
 import com.android.fastcampus.kwave.plot.adapter.WantAdapter;
 
 import java.util.List;
+
+import static com.android.fastcampus.kwave.plot.MainActivity.datas;
 
 
 /**
@@ -22,8 +26,7 @@ import java.util.List;
 public class WantFragment extends Fragment {
 
     RecyclerView recyclerView;
-    WantAdapter wantAdapter;
-    List<Records> dataList;
+    ListAdapter adapter;
 
     public WantFragment() {
         // Required empty public constructor
@@ -36,11 +39,11 @@ public class WantFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_want, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        adapter = new ListAdapter();
+        adapter.setData(datas);
+        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        //Data는 데이터가 들어올 형식만 정해져 있어 Loader.getData를 이용.
-//        dataList = Loader.getData(getContext());
-        wantAdapter = new WantAdapter(dataList, getContext());
-        recyclerView.setAdapter(wantAdapter);
+
 
         return view;
     }

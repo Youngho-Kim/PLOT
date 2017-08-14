@@ -281,7 +281,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.menu:
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, records.getTitle() + "\n" + records.getLocation());
+                intent.putExtra(Intent.EXTRA_TEXT, "이 전시회 어때요?! 같이 갈래요?!" + "\n" + "\n" +
+                                                   "전시회 제목 : " + records.getTitle() + "\n" +
+                                                    "전시 장소 : " + records.getLocation());
                 Intent chooser = Intent.createChooser(intent, "공유할 앱 선택");
                 startActivity(chooser);
                 break;

@@ -6,12 +6,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.android.fastcampus.kwave.plot.CommentActivity;
 import com.android.fastcampus.kwave.plot.DataSource.Data;
 import com.android.fastcampus.kwave.plot.DataSource.Loader;
 import com.android.fastcampus.kwave.plot.DataSource.Records;
+import com.android.fastcampus.kwave.plot.DetailActivity;
 import com.android.fastcampus.kwave.plot.R;
 
 import java.util.ArrayList;
@@ -23,55 +26,68 @@ import java.util.List;
 
 public class WantAdapter extends RecyclerView.Adapter<WantAdapter.Holder> {
 
-    Context context;
-    List<Records> dataList = new ArrayList<>();
+    List<Records> data = new ArrayList<>();
 
-    public WantAdapter(List<Records> dataList, Context context){
-        this.dataList = dataList;
-        this.context = context;
+    Context context = null;
+    public void setData(List<Records> datas){
+        this.data = datas;
+    }
+    @Override
+    public WantAdapter.Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if(context == null){
+            this.context = parent.getContext();
+        }
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_main_item, parent,false);
+        return new WantAdapter.Holder(view);
+
     }
 
-
     @Override
-    public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_main_item, parent, false);
-        return new Holder(view);
-    }
+    public void onBindViewHolder(WantAdapter.Holder holder, int position) {
 
-    @Override
-    public void onBindViewHolder(Holder holder, int position) {
-        Records datas = dataList.get(position);
-        holder.textTitle_main.setText(datas.getTitle());
-        holder.textDateStart_main.setText(datas.getStartdate());
-        holder.textDateEnd_main.setText(datas.getEnddate());
-        holder.textExhibition_main.setText(datas.getLocation());
+        Records records = data.get(position);
+        holder.setPosition(position);
+        holder.title.setText(records.getTitle());
+        holder.location.setText(records.getLocation());
+        holder.period.setText(records.getStartdate());
+        //Glide.with(context).load(datas.image).into(holder.poster);
+        //holder.ratingBar.setRating(datas.star);
 
     }
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return data.size();
+
     }
 
+
     class Holder extends RecyclerView.ViewHolder{
+        TextView title, location, period;
+        ImageView poster;
+        RatingBar ratingBar;
         int position;
-        TextView textTitle_main, textDateStart_main, textDateEnd_main, textExhibition_main;
-
-        public Holder(View itemView) {
-            super(itemView);
-
-            textTitle_main = (TextView) itemView.findViewById(R.id.textTitle_main);
-            textDateStart_main = (TextView) itemView.findViewById(R.id.textDateStart_main);
-            textDateEnd_main = (TextView) itemView.findViewById(R.id.textDateEnd_main);
-            textExhibition_main = (TextView) itemView.findViewById(R.id.textExhibition_main);
-            itemView.setOnClickListener(new View.OnClickListener() {
+        public Holder(View v) {
+            super(v);
+            title = (TextView) v.findViewById(R.id.title);
+            location = (TextView) v.findViewById(R.id.location);
+            period = (TextView) v.findViewById(R.id.period);
+            poster = (ImageView) v.findViewById(R.id.poster);
+            ratingBar = (RatingBar) v.findViewById(R.id.writeRatingBar);
+            v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), CommentActivity.class);
-                    intent.putExtra("LIST_POSITION", position);
-                    v.getContext().startActivity(intent);
+                    Intent intent = new Intent(context, DetailActivity.class);
+                    intent.putExtra("ListId", "category");
+                    intent.putExtra("POSITION" , position);
+                    intent.putExtra("fromList",  data.get(position));
+                    context.startActivity(intent);
                 }
             });
         }
+        public void setPosition(int position){
+            this.position = position;
+        }
     }
+
 }
