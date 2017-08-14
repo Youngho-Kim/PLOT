@@ -3,6 +3,7 @@ package com.android.fastcampus.kwave.plot.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,9 @@ import android.widget.TextView;
 
 import com.android.fastcampus.kwave.plot.DataSource.Records;
 import com.android.fastcampus.kwave.plot.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

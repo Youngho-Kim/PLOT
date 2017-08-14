@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -222,11 +223,18 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             case "category":
                 if(position > -1 ) {
                     records = (Records) bundle.getSerializable("fromList");
+
                     Log.i("records","================"+records);
+
                     Log.i("records", records+"");
                     Log.i("records address_road",records.getAddress_road());
                     ExDetail.records = records;
                     Log.e("ExDetail", ExDetail.records+"");
+
+
+                    ExInfo.records = records;
+                    ExReview.records = records;
+
                     setValue();
                 }
                 break;
@@ -254,7 +262,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+       inflater.inflate(R.menu.menu, menu);
         return true;
     }
 
@@ -266,9 +274,12 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
+
     /*
     * 페이스북 공유하기 기능
     * */
+
+
     private void fbShare(){
         FacebookSdk.sdkInitialize(getApplicationContext());
         shareDialog = new ShareDialog(this);
