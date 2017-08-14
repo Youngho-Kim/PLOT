@@ -1,6 +1,7 @@
 package com.android.fastcampus.kwave.plot;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -179,9 +180,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
    */
     private void setTabLayout(){
         tab = (TabLayout) findViewById(R.id.tab);
-        tab.addTab(tab.newTab().setText("전시 상세"));
-        tab.addTab(tab.newTab().setText("전시 정보"));
-        tab.addTab(tab.newTab().setText("관람평"));
     }
 
     /*
@@ -283,6 +281,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.menu:
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, records.getTitle() + "\n" + records.getLocation());
                 Intent chooser = Intent.createChooser(intent, "공유할 앱 선택");
                 startActivity(chooser);
                 break;
@@ -293,9 +292,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 fbShare();
                 break;
         }
-
-
-        //fbShare();
         return super.onOptionsItemSelected(item);
     }
 
@@ -312,20 +308,20 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
             @Override
             public void onSuccess(Sharer.Result result) {
-                Toast.makeText(DetailActivity.this, "공유 됬다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailActivity.this, "공유가 완료되었습니다.", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancel() {
-                Toast.makeText(DetailActivity.this, "공유 취소 됬다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailActivity.this, "공유가 취소 되었습니다.", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException error) {
-                Toast.makeText(DetailActivity.this, "안된다.....ERROR", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailActivity.this, "다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
             }
         });
-        ShareLinkContent shareLinkContent = new ShareLinkContent.Builder().setContentUrl(Uri.parse("http://naver.com")).build();
+        ShareLinkContent shareLinkContent = new ShareLinkContent.Builder().setContentUrl(Uri.parse(records.getHomepage())).build();
         shareDialog.show(shareLinkContent);
     }
 }
