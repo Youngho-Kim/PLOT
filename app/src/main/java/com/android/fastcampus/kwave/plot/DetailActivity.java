@@ -37,7 +37,7 @@ import java.util.List;
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView postImg;
-    TextView textTitle, textPeriod, textAddr;
+    TextView textTitle, textStartDate, textEndDate, textAddr;
     Button btnBooking, btnLocation, btnReview, btnWant;
     ExDetailFragment ExDetail;
     ExInfoFragment ExInfo;
@@ -52,7 +52,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     String listKey = "";
     private CallbackManager callbackManager;
     ShareDialog shareDialog;
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private void setWidget(){
 
         textTitle = (TextView) findViewById(R.id.textTitle);
-        textPeriod = (TextView) findViewById(R.id.textPeriod);
+        textStartDate = (TextView) findViewById(R.id.textStartDate);
+        textEndDate = (TextView) findViewById(R.id.textEndDate);
         textAddr = (TextView) findViewById(R.id.textAddr);
 
         postImg = (ImageView) findViewById(R.id.postImg);
@@ -222,7 +223,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 if(position > -1 ) {
                     records = (Records) bundle.getSerializable("fromList");
                     Log.i("records","================"+records);
-                    ExInfo.records = records;
+                    Log.i("records", records+"");
+                    Log.i("records address_road",records.getAddress_road());
+                    ExDetail.records = records;
+                    Log.e("ExDetail", ExDetail.records+"");
                     setValue();
                 }
                 break;
@@ -241,7 +245,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
      */
     private void setValue(){
         textTitle.setText(records.getTitle());
-        textPeriod.setText(records.getStartdate());
+        textStartDate.setText(records.getStartdate());
+        textEndDate.setText(records.getEnddate());
         textAddr.setText(records.getLocation());
     }
 
@@ -256,6 +261,15 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     //액션바의 공유버튼을 눌렀을 때 실행되는 함수
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        fbShare();
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    /*
+    * 페이스북 공유하기 기능
+    * */
+    private void fbShare(){
         FacebookSdk.sdkInitialize(getApplicationContext());
         shareDialog = new ShareDialog(this);
         callbackManager = CallbackManager.Factory.create();
@@ -277,6 +291,5 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         });
         ShareLinkContent shareLinkContent = new ShareLinkContent.Builder().setContentUrl(Uri.parse("http://naver.com")).build();
         shareDialog.show(shareLinkContent);
-        return super.onOptionsItemSelected(item);
     }
 }

@@ -16,6 +16,7 @@ import com.android.fastcampus.kwave.plot.R;
  * A simple {@link Fragment} subclass.
  */
 public class ExInfoFragment extends Fragment {
+
     TextView textOrg, textGenre, textTarget, textPrice, textHomepage;
     public static Records records;
 
@@ -27,6 +28,7 @@ public class ExInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_ex_info, container, false);
         textOrg = (TextView) view.findViewById(R.id.textOrg);
         textGenre = (TextView) view.findViewById(R.id.textGenre);

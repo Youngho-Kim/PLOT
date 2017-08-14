@@ -19,7 +19,7 @@ import com.android.fastcampus.kwave.plot.adapter.ExReviewAdapter;
 public class ExReviewFragment extends Fragment {
     RecyclerView reviewRecycler;
     ExReviewAdapter ExAdapter;
-    public Records records = new Records();
+    public static Records records;
 
     public ExReviewFragment() {
         // Required empty public constructor
