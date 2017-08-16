@@ -1,14 +1,17 @@
 package com.android.fastcampus.kwave.plot;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -33,6 +36,7 @@ import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -188,7 +192,15 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private void goReserve(){
         Intent intent = new Intent(DetailActivity.this, ReserveActivity.class);
         intent.putExtra("Title", textTitle.getText().toString());
-        startActivity(intent);
+        String freeorNot = records.getFreeornot();
+        if(freeorNot.equals("유료")){
+            Toast.makeText(getBaseContext(), "예매할 수 없는 전시입니다.", Toast.LENGTH_SHORT).show();
+        } else if (freeorNot.equals("무료") || freeorNot.equals("0")){
+            Toast.makeText(getBaseContext(), "무료 관람입니다.", Toast.LENGTH_SHORT).show();
+        } else {
+            intent.putExtra("Freeornot", records.getFreeornot());
+            startActivity(intent);
+        }
     }
 
     /*
@@ -269,11 +281,13 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     //액션바의 공유버튼을 눌렀을 때 실행되는 함수
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         /*
             item의 id값으로 어떤 메뉴버튼을 눌렀는지 판별함.
          */
-        switch(item.getItemId()){
+
+
+        switch(item.getItemId()) {
             /*
                 페이스북 이외의 앱(카카오톡, 문자메세지 등)을 선택할 수 있도록 함.
                 단, 에뮬레이터에서 실행하면. 에뮬레이터에 설치된 앱이 없기 때문에 자동으로 sms 앱으로 넘어감.

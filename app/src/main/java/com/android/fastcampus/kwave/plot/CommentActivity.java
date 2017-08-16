@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -21,6 +22,7 @@ import java.util.Date;
 public class CommentActivity extends AppCompatActivity {
 
     Button btnWriteComment;
+    TextView reserveTitle;
     EditText textComment;
     String comment = "";
     String date;
@@ -31,7 +33,8 @@ public class CommentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
 
-
+        reserveTitle = (TextView) findViewById(R.id.reserveTitle);
+        setTitle();
         writeRatingBar = (RatingBar) findViewById(R.id.writeRatingBar);
         btnWriteComment = (Button) findViewById(R.id.btnWriteComment);
         textComment = (EditText) findViewById(R.id.textComment);
@@ -57,6 +60,11 @@ public class CommentActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         date = sdf.format(nowDate);
         return date;
+    }
+
+    public void setTitle(){
+        Intent intent = getIntent();
+        reserveTitle.setText(intent.getStringExtra("Title"));
     }
 
 

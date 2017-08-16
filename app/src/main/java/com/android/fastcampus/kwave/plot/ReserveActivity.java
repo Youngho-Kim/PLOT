@@ -25,8 +25,9 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
     String date;
     Spinner spinnerNormal, spinnerStudent, spinnerPackage, spinnerWeekday, spinnerWeekend;
     ArrayAdapter adapter;
-    TextView txtPriceResult, txtTitle;
+    TextView txtPriceResult, txtTitle, txtNormalPrice;
     Button btnGoBuy;
+    String priceString;
 
 
     static int normalPrice, studentPrice, packagePrice, weekdayPrice, weekendPrice, resultPrice;
@@ -59,11 +60,13 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
 
        txtPriceResult = (TextView) findViewById(R.id.txtPriceResult);
        txtTitle = (TextView) findViewById(R.id.txtTitle);
+       txtNormalPrice = (TextView) findViewById(R.id.txtNormalPrice);
 
 
        btnGoBuy = (Button) findViewById(R.id.btnGoBuy);
        btnGoBuy.setOnClickListener(this);
        setTitle();
+       txtNormalPrice.setText(getPrice() + " 원");
    }
 
    /*
@@ -73,6 +76,12 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
    public void setSpinnerAdapter(Spinner spinner){
        spinner.setAdapter(adapter);
        spinner.setOnItemSelectedListener(this);
+   }
+
+   public String getPrice(){
+       Intent intent = getIntent();
+       priceString = intent.getStringExtra("Freeornot");
+       return priceString;
    }
 
    /*
@@ -105,9 +114,10 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
     //spinner에 onItemSelected를 추가하면 선택했을 때의 포지션 값 등을 알 수 있음.
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        int basePrice = Integer.parseInt(getPrice());
         switch(parent.getId()){
             case R.id.spinnerNormal:
-                normalPrice = position * 20000;
+                normalPrice = position * basePrice;
                 break;
             case R.id.spinnerStudent:
                 studentPrice = position * 10000;
