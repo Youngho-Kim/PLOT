@@ -102,7 +102,11 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
         Intent intent = getIntent();
         userEmail = intent.getStringExtra("pk");
         userPassword = intent.getStringExtra("token");
-        nickName = intent.getStringExtra("nick_name");
+        if(intent.getStringExtra("nick_name") != null) {
+            nickName = intent.getStringExtra("nick_name");
+        } else {
+            nickName = intent.getStringExtra("FBUserName");
+        }
         message = nickName + "님";
 
         task(this);

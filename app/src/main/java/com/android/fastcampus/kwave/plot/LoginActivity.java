@@ -46,11 +46,15 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.Profile;
+import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -70,6 +74,8 @@ public class LoginActivity extends AppCompatActivity {
     //AccessTokenTracker accessTokenTracker;
     //String userToken;
     public String fbuserid = "";
+    public String fbuserName;
+    ProfileTracker profileTracker;
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -402,6 +408,7 @@ public class LoginActivity extends AppCompatActivity {
 //    }
 
 
+
     /* 페이스북 로그인 프로세스 (별도의 함수로 분리하였습니다.)
      */
     private void fbLoginProcess() {
@@ -412,6 +419,19 @@ public class LoginActivity extends AppCompatActivity {
         */
         callbackManager = CallbackManager.Factory.create();
 
+        profileTracker = new ProfileTracker() {
+            @Override
+            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
+                if(oldProfile == null) {
+                    fbuserName = currentProfile.getName();
+                } else {
+                    fbuserName = oldProfile.getName();
+                }
+                Log.e("fbuserName", fbuserName);
+            }
+        };
+
+
         /*
             2) Login 부분을 담당하는 LoginManager 호출. LoginManager.getInstance()로 현재 내용을 불러온 뒤
             콜백매니저에 LoginManager를 등록합니다.
@@ -421,13 +441,17 @@ public class LoginActivity extends AppCompatActivity {
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                String username = loginResult.getAccessToken().getUserId();
 
+
+                String username = loginResult.getAccessToken().getUserId();
                 fbuserid = loginResult.getAccessToken().getUserId();
                 REQUEST_CODE = LOGIN_OK;
                 saveFBID(fbuserid);
                 Log.e("userid", fbuserid);
                 Toast.makeText(getBaseContext(), "로그인 성공 : " + username, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("FBUserName", fbuserName);
+                startActivity(intent);
                 finish();
             }
 
@@ -458,12 +482,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+
         /*
             onActivityResult에 반드시 callbackManager의 결과값을 등록해야 합니다.
             등록하지 않으면 callbackmanager가 실행되지 않아 아무런 결과도 얻어올 수 없습니다.
          */
         callbackManager.onActivityResult(requestCode, resultCode, data);
-
     }
 
 
