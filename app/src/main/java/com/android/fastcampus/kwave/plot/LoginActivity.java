@@ -7,6 +7,7 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -46,6 +47,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
+import static com.android.fastcampus.kwave.plot.Util.LoginCode.LOGIN_OK;
+import static com.android.fastcampus.kwave.plot.Util.LoginCode.REQUEST_CODE;
 
 /**
  * A login screen that offers login via email/password.
@@ -54,8 +57,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private CallbackManager callbackManager;
     LoginButton fbLogin;
-    AccessTokenTracker accessTokenTracker;
-    String userToken;
+    //AccessTokenTracker accessTokenTracker;
+    //String userToken;
+    public String fbuserid = "";
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -323,7 +327,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /* 페이스북 로그인 프로세스 (별도의 함수로 분리하였습니다.)
      */
-    private void fbLoginProcess(){
+    private void fbLoginProcess() {
 
         /*
             1) CallbackManager 객체를 선언해서 Factory.create() 함수를 호출하여 생성합니다.
@@ -340,7 +344,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(getBaseContext(), "로그인 성공 : " + userToken, Toast.LENGTH_SHORT).show();
+                String username = loginResult.getAccessToken().getUserId();
+
+                fbuserid = loginResult.getAccessToken().getUserId();
+                REQUEST_CODE = LOGIN_OK;
+                saveFBID(fbuserid);
+                Log.e("userid", fbuserid);
+                Toast.makeText(getBaseContext(), "로그인 성공 : " + username, Toast.LENGTH_SHORT).show();
                 finish();
             }
 
@@ -355,32 +365,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        /*
-            페이스북 로그인 시 토큰 받아오기
 
-            1) accessTokenTracker로 현재 토큰이 있는지, 없으면 새로 만든 토큰은 무엇인지 추적합니다.
-            로그인 기능과 연동되므로 'AccessTokenTracker'만 생성해주면 됩니다.
-         */
+    }
 
-        accessTokenTracker = new AccessTokenTracker() {
-
-            /*
-                토큰 감지
-                토큰은 그냥 string 값으로 받아옵니다.
-             */
-            @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-                if(currentAccessToken != null){
-                    userToken = currentAccessToken.getToken();
-                } else {
-                    userToken = oldAccessToken.getToken();
-                }
-            }
-        };
-
-
-
-
+    public void saveFBID(String fbuserid){
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPreference", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("FBUSERID", fbuserid);
+        editor.commit();
 
     }
 
@@ -396,6 +388,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         callbackManager.onActivityResult(requestCode, resultCode, data);
 
     }
+
+
 
     /**
      * Represents an asynchronous login/registration task used to authenticate the user.
@@ -440,6 +434,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+                REQUEST_CODE = 999;
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
@@ -453,5 +448,33 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
         }
     }
+
+
+
+
+     /*
+
+           // 페이스북 로그인 시 토큰 받아오기
+
+           // 1) accessTokenTracker로 현재 토큰이 있는지, 없으면 새로 만든 토큰은 무엇인지 추적합니다.
+            로그인 기능과 연동되므로 'AccessTokenTracker'만 생성해주면 됩니다.
+
+
+        accessTokenTracker = new AccessTokenTracker() {
+
+
+               // 토큰 감지
+               // 토큰은 그냥 string 값으로 받아옵니다.
+
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                if (currentAccessToken != null) {
+                    userToken = currentAccessToken.getToken();
+                } else {
+                    userToken = oldAccessToken.getToken();
+                }
+            }
+        };
+        */
 }
 

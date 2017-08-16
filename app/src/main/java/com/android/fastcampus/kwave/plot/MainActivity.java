@@ -52,6 +52,9 @@ import java.util.Map;
 
 import static android.R.attr.data;
 import static com.android.fastcampus.kwave.plot.ThrowData2Activity.task;
+import static com.android.fastcampus.kwave.plot.Util.LoginCode.LOGIN_OK;
+import static com.android.fastcampus.kwave.plot.Util.LoginCode.NOT_LOGIN;
+import static com.android.fastcampus.kwave.plot.Util.LoginCode.REQUEST_CODE;
 
 public class MainActivity extends AppCompatActivity implements NaviDrawerSetting, View.OnClickListener, IData {
 
@@ -82,6 +85,9 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
 
     public static String url = "http://13.124.140.9:3456/exhibition_list/nofield";
     public static List<Records> datas = new ArrayList<>();
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -321,8 +327,14 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
                 startActivity(intent);
                 break;
             case R.id.textMypage :
-                intent = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(intent);
+                if(REQUEST_CODE == LOGIN_OK) {
+                    intent = new Intent(MainActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getBaseContext(), "로그인 해주세요.", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
     }
