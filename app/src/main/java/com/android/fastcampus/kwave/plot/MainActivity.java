@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
     private RankRecyclerAdapterMain rankRecyclerAdapterMain;
     private LinearLayout rank, categoryLinear, naviUser, cotentScroll;
     private Spinner categoryGenre, categoryLocation;
-    private TextView categoryDate, textView, textHome, textMypage;
+    private TextView categoryDate, textView, textHome, textMypage, textUserNickName;
     private ViewPager rankViewPagerMain;
     private RankViewPagerAdapterMain viewPagerAdapterMain;
     private Button btnNaviUserLogin;
@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
     public static String url = "http://13.124.140.9:3456/exhibition_list/nofield";
     public static List<Records> datas = new ArrayList<>();
 
+    String userEmail, userPassword, message, nickName;
 
 
 
@@ -98,6 +99,12 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
             selectFirstItemAsDefault();
         }
 
+        Intent intent = getIntent();
+        userEmail = intent.getStringExtra("pk");
+        userPassword = intent.getStringExtra("token");
+        nickName = intent.getStringExtra("nick_name");
+        message = nickName + "님";
+
         task(this);
         initNaviDrawer();
         initToolbar();
@@ -109,6 +116,8 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
         setupDrawer();
         initSpinner();
         initCalrendarDialog();
+
+
     }
 
     private void initView() {
@@ -181,6 +190,8 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
         naviUser.setOnClickListener(this);
         naviUser.setVisibility(View.VISIBLE);
         btnNaviUserLogin.setVisibility(View.GONE);
+        textUserNickName = (TextView) findViewById(R.id.textUserNickName);
+        textUserNickName.setText(message);
     }
 
     @Override
@@ -319,8 +330,8 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
                 startActivity(intent);
                 break;
             case R.id.naviUser:
-                naviUser.setVisibility(View.GONE);
-                btnNaviUserLogin.setVisibility(View.VISIBLE);
+//                naviUser.setVisibility(View.GONE);
+//                btnNaviUserLogin.setVisibility(View.VISIBLE);
                 break;
             case R.id.textHome :
                 intent = new Intent(MainActivity.this, com.android.fastcampus.kwave.plot.ListActivity.class);
