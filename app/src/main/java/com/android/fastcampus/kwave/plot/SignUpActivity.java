@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.fastcampus.kwave.plot.Util.SignUpRequest;
 import com.android.volley.RequestQueue;
@@ -79,6 +80,7 @@ public class SignUpActivity extends AppCompatActivity{
                                         .setNegativeButton("다시 시도", null)
                                         .create()
                                         .show();
+                                Toast.makeText(SignUpActivity.this, "회원 등록에 실패했습니다.", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

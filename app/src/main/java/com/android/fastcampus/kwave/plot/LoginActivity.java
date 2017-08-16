@@ -98,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 //    private LinearLayout emailLoginForm;
 //    private Button emailSignInButton;
     private Button signUpButton;
+    String success;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                            try {
                                JSONObject jsonResponse = new JSONObject(response);
                                int success1 = jsonResponse.getInt("pk");
-                               String success = Integer.toString(success1);
+                               success = Integer.toString(success1);
                                if(success != null){
                                    String email = jsonResponse.getString("pk");
                                    String password = jsonResponse.getString("token");
@@ -149,6 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                                            .setNegativeButton("다시 시도", null)
                                            .create()
                                            .show();
+                                   Toast.makeText(LoginActivity.this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show();
                                }
                            }catch (Exception e){
                                e.printStackTrace();
