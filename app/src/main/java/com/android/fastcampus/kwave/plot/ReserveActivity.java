@@ -1,5 +1,6 @@
 package com.android.fastcampus.kwave.plot;
 
+import android.app.DatePickerDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,9 +27,10 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
     String date;
     Spinner spinnerNormal, spinnerStudent, spinnerPackage, spinnerWeekday, spinnerWeekend;
     ArrayAdapter adapter;
-    TextView txtPriceResult, txtTitle, txtNormalPrice;
-    Button btnGoBuy;
+    TextView txtPriceResult, txtTitle, txtNormalPrice, txtViewDate;
+    Button btnGoBuy, btnSetVisitDate;
     String priceString;
+    DatePickerDialog datePickerDialog;
 
 
     static int normalPrice, studentPrice, packagePrice, weekdayPrice, weekendPrice, resultPrice;
@@ -61,10 +64,14 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
        txtPriceResult = (TextView) findViewById(R.id.txtPriceResult);
        txtTitle = (TextView) findViewById(R.id.txtTitle);
        txtNormalPrice = (TextView) findViewById(R.id.txtNormalPrice);
+       txtViewDate = (TextView) findViewById(R.id.txtViewDate);
 
 
        btnGoBuy = (Button) findViewById(R.id.btnGoBuy);
        btnGoBuy.setOnClickListener(this);
+
+       btnSetVisitDate = (Button) findViewById(R.id.btnSetDate);
+       btnSetVisitDate.setOnClickListener(this);
        setTitle();
        txtNormalPrice.setText(getPrice() + " 원");
    }
@@ -102,7 +109,10 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
                 intent.putExtra("resultPrice", resultPrice);
                 //setNoti(resultPrice);
                 startActivity(intent);
-
+                break;
+            case R.id.btnSetDate:
+                datePickerDialog = new DatePickerDialog(this, listener, 2017, 7, 16);
+                datePickerDialog.show();
         }
     }
 
@@ -186,4 +196,18 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
             notificationManager.notify(requestCode, notification);
         }
     }
+
+    public DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            int realMonth = month + 1;
+            txtViewDate.setText(year + "년 " + realMonth + "월 " + dayOfMonth + "일");
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, month);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            Toast.makeText(getBaseContext(), calendar+"", Toast.LENGTH_SHORT).show();
+        }
+    };
+
 }

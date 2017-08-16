@@ -30,20 +30,17 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
         android:text="가격"
         android:textColor="#37374f"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <TextView
         android:id="@+id/txtStudent"
-        android:layout_width="90dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
         android:text="초중고생"
         android:textColor="#37374f"
         android:textSize="24sp"
@@ -53,11 +50,8 @@
 
     <TextView
         android:id="@+id/txtPackage"
-        android:layout_width="105dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
         android:text="2인패키지"
         android:textColor="#37374f"
         android:textSize="24sp"
@@ -67,11 +61,8 @@
 
     <TextView
         android:id="@+id/txtWeekday"
-        android:layout_width="90dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
         android:text="평일할인"
         android:textColor="#37374f"
         android:textSize="24sp"
@@ -81,11 +72,8 @@
 
     <TextView
         android:id="@+id/textWeekend"
-        android:layout_width="90dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
         android:text="주말할인"
         android:textColor="#37374f"
         android:textSize="24sp"
@@ -109,8 +97,6 @@
         android:id="@+id/txtPriceStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="120dp"
-        android:layout_marginRight="120dp"
         android:text="10,000원"
         android:textColor="#37374f"
         android:textSize="24sp"
@@ -122,8 +108,6 @@
         android:id="@+id/txtPricePackage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="120dp"
-        android:layout_marginRight="120dp"
         android:text="28,000원"
         android:textColor="#37374f"
         android:textSize="24sp"
@@ -135,8 +119,6 @@
         android:id="@+id/txtPriceWeekday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="120dp"
-        android:layout_marginRight="120dp"
         android:text="15,000원"
         android:textColor="#37374f"
         android:textSize="24sp"
@@ -148,8 +130,6 @@
         android:id="@+id/txtPriceWeekend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="120dp"
-        android:layout_marginRight="120dp"
         android:text="17,000원"
         android:textColor="#37374f"
         android:textSize="24sp"
@@ -159,10 +139,8 @@
 
     <Spinner
         android:id="@+id/spinnerStudent"
-        android:layout_width="60dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:elevation="3dp"
         android:fadeScrollbars="true"
         android:textAlignment="textEnd"
@@ -172,10 +150,8 @@
 
     <Spinner
         android:id="@+id/spinnerPackage"
-        android:layout_width="60dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:elevation="3dp"
         android:fadeScrollbars="true"
         android:textAlignment="textEnd"
@@ -185,10 +161,8 @@
 
     <Spinner
         android:id="@+id/spinnerWeekday"
-        android:layout_width="60dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:elevation="3dp"
         android:fadeScrollbars="true"
         android:textAlignment="textEnd"
@@ -198,10 +172,8 @@
 
     <Spinner
         android:id="@+id/spinnerWeekend"
-        android:layout_width="60dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:elevation="3dp"
         android:fadeScrollbars="true"
         android:textAlignment="textEnd"
@@ -223,10 +195,8 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="23dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
         android:text="매"
         android:textColor="#37374f"
         android:textSize="24sp"
@@ -236,10 +206,8 @@
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="23dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
         android:text="매"
         android:textColor="#37374f"
         android:textSize="24sp"
@@ -251,8 +219,6 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
         android:text="매"
         android:textColor="#37374f"
         android:textSize="24sp"
@@ -264,8 +230,6 @@
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
         android:text="매"
         android:textColor="#37374f"
         android:textSize="24sp"
@@ -354,5 +318,42 @@
         android:textColor="#37474f"
         app:layout_constraintRight_toLeftOf="@+id/textView7"
         app:layout_constraintTop_toTopOf="@+id/txtNormalPrice" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="15dp"
+        android:text="관람일"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+        android:layout_marginStart="24dp" />
+
+    <Button
+        android:id="@+id/btnSetDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:background="#00695c"
+        android:text="관람일\n선택"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/txtViewDate"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtViewDate" />
+
+    <TextView
+        android:id="@+id/txtViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="120dp"
+        android:text="0000-00-00"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView12"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView12" />
 
 </android.support.constraint.ConstraintLayout>
