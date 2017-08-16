@@ -450,7 +450,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("userid", fbuserid);
                 Toast.makeText(getBaseContext(), "로그인 성공 : " + username, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("FBUserName", fbuserName);
+                intent.putExtra("nick_name", fbuserName);
                 startActivity(intent);
                 finish();
             }

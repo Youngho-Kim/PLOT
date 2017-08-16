@@ -104,7 +104,7 @@ public class ProfileActivity extends AppCompatActivity {
         LoginManager loginManager = LoginManager.getInstance();
         loginManager.logOut();
         REQUEST_CODE = NOT_LOGIN;
-        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
