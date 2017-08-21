@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.fastcampus.kwave.plot.DataSource.Records;
+import com.android.fastcampus.kwave.plot.DataSource.ServerData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     ViewPager pager;
     int position;
     Bundle bundle;
-    Records records;
+    ServerData serverData;
     String listKey = "";
 
     @Override
@@ -181,13 +181,13 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         switch (listKey){
             case "category":
                 if(position > -1 ) {
-                    records = (Records) bundle.getSerializable("fromList");
+                    serverData = (ServerData) bundle.getSerializable("fromList");
                     setValue();
                 }
                 break;
             case "MainActivity":
                 if(position > -1 ) {
-                    records = (Records) bundle.getSerializable("fromMain");
+                    serverData = (ServerData) bundle.getSerializable("fromMain");
                     setValue();
                 }
                 break;
@@ -198,8 +198,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     ListActivity 정보 DetailActivity widget 에 연결
      */
     private void setValue(){
-        textTitle.setText(records.getTitle());
-        textPeriod.setText(records.getStartdate());
-        textAddr.setText(records.getLocation());
+        textTitle.setText(serverData.getPoster_title());
+        textPeriod.setText(serverData.getDate_start());
+        textAddr.setText(serverData.getLocation());
     }
 }

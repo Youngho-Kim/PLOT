@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.android.fastcampus.kwave.plot.DataSource.Records;
+import com.android.fastcampus.kwave.plot.DataSource.ServerData;
 import com.android.fastcampus.kwave.plot.DetailActivity;
 import com.android.fastcampus.kwave.plot.R;
 
@@ -24,10 +24,10 @@ import java.util.List;
  */
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
-    List<Records> data = new ArrayList<>();
-
+    List<ServerData> data = new ArrayList<>();
     Context context = null;
-    public void setData(List<Records> datas){
+
+    public void setData(List<ServerData> datas){
         this.data = datas;
     }
     @Override
@@ -43,11 +43,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.Holder> {
     @Override
     public void onBindViewHolder(Holder holder, int position) {
 
-        Records records = data.get(position);
+        ServerData serverData = data.get(position);
         holder.setPosition(position);
-        holder.title.setText(records.getTitle());
-        holder.location.setText(records.getLocation());
-        holder.period.setText(records.getStartdate());
+        holder.title.setText(serverData.getPoster_title());
+        holder.location.setText(serverData.getLocation());
+        holder.period.setText(serverData.getDate_start());
             //Glide.with(context).load(datas.image).into(holder.poster);
             //holder.ratingBar.setRating(datas.star);
 

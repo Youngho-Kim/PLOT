@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.android.fastcampus.kwave.plot.DataSource.Records;
+import com.android.fastcampus.kwave.plot.DataSource.ServerData;
 import com.android.fastcampus.kwave.plot.DetailActivity;
 import com.android.fastcampus.kwave.plot.R;
 
@@ -24,19 +24,19 @@ import java.util.List;
 
 
 public class RankRecyclerAdapterMain extends RecyclerView.Adapter<RankRecyclerAdapterMain.Holder>{
-        private List<Records> data = new ArrayList<>();
+        private List<ServerData> data = new ArrayList<>();
         private LayoutInflater inflater;
         Context context = null;
 
 
-    public RankRecyclerAdapterMain(List<Records> data, Context context) {
+    public RankRecyclerAdapterMain(List<ServerData> data, Context context) {
         this.data = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
 
-    public void setData(List<Records> data) {
+    public void setData(List<ServerData> data) {
             this.data = data;
         }
 
@@ -57,11 +57,11 @@ public class RankRecyclerAdapterMain extends RecyclerView.Adapter<RankRecyclerAd
 
         @Override
         public void onBindViewHolder (Holder holder,int position){
-            Records records = data.get(position);
+            ServerData serverData = data.get(position);
 
-            holder.textTitleMain.setText(records.getTitle());
-            holder.textDateEndMain.setText(records.getEnddate());
-            holder.textExhibitionMain.setText(records.getLocation());
+            holder.textTitleMain.setText(serverData.getPoster_title());
+            holder.textDateEndMain.setText(serverData.getDate_end());
+            holder.textExhibitionMain.setText(serverData.getLocation());
 //        holder.setImage(records.rankBestImage[position+5]);
             holder.setPosition(position);
         }

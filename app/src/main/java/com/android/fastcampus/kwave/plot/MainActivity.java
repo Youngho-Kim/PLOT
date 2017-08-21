@@ -2,7 +2,6 @@ package com.android.fastcampus.kwave.plot;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -32,26 +31,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.fastcampus.kwave.plot.DataSource.Dummy;
 import com.android.fastcampus.kwave.plot.DataSource.ExpandableListDataSource;
-import com.android.fastcampus.kwave.plot.DataSource.Records;
+import com.android.fastcampus.kwave.plot.DataSource.ServerData;
 import com.android.fastcampus.kwave.plot.adapter.CustomExpandableListAdapter;
 import com.android.fastcampus.kwave.plot.adapter.RankRecyclerAdapterMain;
 import com.android.fastcampus.kwave.plot.adapter.RankViewPagerAdapterMain;
 import com.android.fastcampus.kwave.plot.navigation.FragmentNavigationManager;
 import com.android.fastcampus.kwave.plot.navigation.NaviDrawerSetting;
 import com.android.fastcampus.kwave.plot.navigation.NavigationManager;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-import static android.R.attr.data;
 import static com.android.fastcampus.kwave.plot.ThrowData2Activity.task;
 
-public class MainActivity extends AppCompatActivity implements NaviDrawerSetting, View.OnClickListener, IData {
+public class MainActivity extends AppCompatActivity implements NaviDrawerSetting, View.OnClickListener, ILoadData {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -78,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
     int day;
     private static final int DATE_DIALOG_ID = 1;
 
-    public static String url = "http://13.124.140.9:3456/exhibition_list/nofield";
-    public static List<Records> datas = new ArrayList<>();
+    public static String url = "http://plot.ejjeong.com/api/post/postlist/";
+    public static List<ServerData> datas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -448,14 +444,8 @@ public class MainActivity extends AppCompatActivity implements NaviDrawerSetting
 
 
     @Override
-    public void postExecute(String jsonString) {
-
-        Gson gson = new Gson();
-        Dummy dum = gson.fromJson(jsonString, Dummy.class);
-        Records rec[] = dum.getRecords();
-        for(int i = 0; i <rec.length; i++){
-            datas.add(rec[i]);
-        }
+    public void setServerData(List<ServerData> result) {
+        datas = result;
     }
 
     @Override
