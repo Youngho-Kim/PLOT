@@ -19,7 +19,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class ReserveActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -111,7 +113,16 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
             case R.id.btnSetDate:
-                datePickerDialog = new DatePickerDialog(this, listener, 2017, 7, 16);
+                long now = System.currentTimeMillis();
+                Date date = new Date(now);
+                SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+                SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+                int getYear = Integer.parseInt(yearFormat.format(date));
+                int getMonth = Integer.parseInt(monthFormat.format(date))-1;
+                int getDate = Integer.parseInt(dateFormat.format(date));
+
+                datePickerDialog = new DatePickerDialog(this, listener, getYear, getMonth, getDate);
                 datePickerDialog.show();
         }
     }
